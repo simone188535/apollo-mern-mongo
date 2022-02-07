@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import FormikStatus from "../components/Common/FormikStatus";
@@ -8,15 +7,9 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./assets/css/auth.css";
 
-const Signup = () => {
-  // eslint-disable-next-line 
-  const history = useHistory();
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+const Signup = () => { 
+  const [addUser] = useMutation(ADD_USER);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
-
-  useEffect(() => {
-    if (data) return history.push("/");
-  }, [data, history]);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
     const { username, email, password } = values;
@@ -68,7 +61,7 @@ const Signup = () => {
           <Field name="password" type="password" className="mb-2 form-control"/>
           <ErrorMessage name="password" component="div" className="text-danger mb-3"/>
 
-          <button type="submit" className="btn text-light submit-btn">Submit</button>
+          <button type="submit" className="btn text-light submit-btn mb-2">Submit</button>
           <FormikStatus err={successfulSubmission} successMessage="Sign Up Successful!"/>
         </Form>
       </Formik>
