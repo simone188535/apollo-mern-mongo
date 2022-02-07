@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import FormikStatus from "../components/Common/FormikStatus";
-
 import Auth from "../utils/auth";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -11,12 +10,13 @@ import "./assets/css/auth.css";
 
 const Signup = () => {
   // eslint-disable-next-line 
+  const history = useHistory();
   const [addUser, { error, data }] = useMutation(ADD_USER);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
   useEffect(() => {
-    if (data) return <Redirect to="/" />;
-  }, [data]);
+    if (data) return history.push("/");
+  }, [data, history]);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
     const { username, email, password } = values;

@@ -1,87 +1,76 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import Card from 'react-bootstrap/Card'
-import './assets/css/login.css'
-import Auth from '../utils/auth';
+import FormikStatus from "../components/Common/FormikStatus";
+import Auth from "../utils/auth";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./assets/css/auth.css";
 
 const Login = () => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  // eslint-disable-next-line 
+  const history = useHistory();
   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    if (data) return history.push("/");
+    
+  }, [data, history]);
 
   // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = (async (values, { setSubmitting }) => {
+    const { email, password } = values;
+
     try {
+      if (successfulSubmission) setSuccessfulSubmission(false);
+
       const { data } = await login({
-        variables: { ...formState },
+        variables: { email, password },
       });
 
       Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+      setSubmitting(false);
+    } catch (err) {
+      console.error(err);
+      setSuccessfulSubmission(true);
     }
 
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
-    });
-  };
+  });
 
-  const renderForm = () => {
-    if (data) {
-      return (
-        <p>
-          Success! You may now head{' '}
-          <Link to="/">back to the homepage.</Link>
-        </p>
-      )
-    }
-    return (
-      <form onSubmit={handleFormSubmit}>
-        <div className='formInput'>
-          <input
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formInput'>
-          <input
-            placeholder='Password'
-            name="password"
-            type="password"
-            value={formState.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">
-          Submit
-        </button>
-      </form>
-    );
-  };
 
   return (
-    <Card className='loginCard bg-danger'>
-      <h4>Login</h4>
-      {renderForm()}
-      {error && <div>{error.message}</div>}
-    </Card>
+    <section className="login-page container">
+    <div className="row">
+    <h4 className="col">Login</h4>
+    </div>
+    <div className="row">
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      validationSchema={Yup.object({
+        email: Yup.string()
+          .email("Invalid email address")
+          .required("Required"),
+        password: Yup.string().required("Required"),
+      })}
+      onSubmit={handleFormSubmit}
+    >
+      <Form className="col d-flex flex-column">
+        <label htmlFor="email" className="mb-2">Email Address</label>
+        <Field name="email" type="email" className="mb-2 form-control"/>
+        <ErrorMessage name="email" component="div" className="text-danger mb-2"/>
+
+        <label htmlFor="password" className="mb-2">Password</label>
+        <Field name="password" type="password" className="mb-2 form-control"/>
+        <ErrorMessage name="password" component="div" className="text-danger mb-3"/>
+
+        <button type="submit" className="btn text-light submit-btn">Submit</button>
+        <FormikStatus err={successfulSubmission} successMessage="Login Successful!"/>
+      </Form>
+    </Formik>
+    </div>
+  </section>
   );
 };
 
