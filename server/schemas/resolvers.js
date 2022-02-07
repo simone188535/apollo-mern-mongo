@@ -6,8 +6,11 @@ const axios = require('axios');
 const resolvers = {
   Query: {
     vinyl: async (_, args) => {
-      const { data } = await axios.get('url')
-      console.log(data.results);
+      const { data } = await axios.get('https://api.discogs.com/database/search?q=nirvana-nevermind&title?page=1&per_page=1&token=WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh')
+      return data.results
+    },
+    vinyls: async (_, args) => {
+      const { data } = await axios.get('https://api.discogs.com/database/search?q=elvis&artist&token=WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh')
       return data.results
     },
     users: async () => {
@@ -37,7 +40,7 @@ const resolvers = {
         throw new AuthenticationError('No user found with this email address');
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.passwordCompare(password);
 
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');

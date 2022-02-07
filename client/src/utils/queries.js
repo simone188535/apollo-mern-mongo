@@ -1,11 +1,26 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const QUERY_USERS = gql`
-  query users {
-    users {
-      _id
-      username
-      email
+export const QUERY_VINYL = gql`
+  query vinyl {
+    vinyl {
+      id
+      title
+      format
+      label
+      type
+      genre
+      style
+      cover_image
+    }
+  }
+`;
+
+export const QUERY_VINYLS = gql`
+  query vinyls {
+    vinyls {
+      id
+      title
+      cover_image
     }
   }
 `;
@@ -16,6 +31,18 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      password
+    }
+  }
+`;
+
+export const QUERY_USERS = gql`
+  query users {
+    users {
+      _id
+      username
+      email
+      password
     }
   }
 `;

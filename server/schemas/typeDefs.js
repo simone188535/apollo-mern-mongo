@@ -4,12 +4,17 @@ const typeDefs = gql`
   type Vinyl {
     id: ID!
     title: String!
-    coverImage: String
-    format: String
-    label: String
+    format: [String]
+    label: [String]
     type: String
-    genre: String
-    style: String
+    genre: [String]
+    style: [String]
+    cover_image: String
+  }
+  type Vinyls {
+    id: ID!
+    title: String!
+    cover_image: String
   }
   type User {
     _id: ID
@@ -24,6 +29,7 @@ const typeDefs = gql`
   }
   type Query {
     vinyl: [Vinyl]
+    vinyls: [Vinyls]
     users: [User]
     user(id: ID!): User
     me: User
