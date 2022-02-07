@@ -20,7 +20,7 @@ const vinylSchema = new Schema({
   style: {
     type: String,
   },
-  cover_image: {
+  coverImage: {
     type: String
   }
 });

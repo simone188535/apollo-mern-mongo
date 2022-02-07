@@ -1,3 +1,4 @@
-const User = require('./users.js')
+const User = require('./users')
+const Vinyl = require('./vinyl')
 
-module.exports = { User }
+module.exports = { User, Vinyl }
