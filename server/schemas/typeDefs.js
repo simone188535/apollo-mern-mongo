@@ -21,6 +21,7 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    vinyl: [Vinyl]
   }
   type Auth {
     token: ID!
@@ -36,6 +37,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(email:String!, username:String!, password:String!): Auth
     login(email:String!, password:String!): Auth
+    addVinyl(id:ID!, title: String!, cover_image: String!, email: String!): Auth
   }
 `;
 
