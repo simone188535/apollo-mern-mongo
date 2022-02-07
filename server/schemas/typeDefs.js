@@ -9,12 +9,12 @@ const typeDefs = gql`
     type: String
     genre: [String]
     style: [String]
-    coverImage: String
+    cover_image: String
   }
   type Vinyls {
     id: ID!
     title: String!
-    coverImage: String
+    cover_image: String
   }
   type User {
     _id: ID
