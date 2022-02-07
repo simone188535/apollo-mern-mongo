@@ -25,6 +25,4 @@ const vinylSchema = new Schema({
   }
 });
 
-const User = model('Vinyl', vinylSchema);
-
-module.exports = Vinyl;
+module.exports = vinylSchema;

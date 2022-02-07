@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, UserVinyl } = require('../models');
 const { signToken } = require('../utils/auth');
 const axios = require('axios');
 
@@ -7,6 +7,7 @@ const resolvers = {
   Query: {
     vinyl: async (_, args) => {
       const { data } = await axios.get('url')
+      console.log(data.results);
       return data.results
     },
     users: async () => {
@@ -45,6 +46,13 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    addVinyl: async (_, {email, title, id, cover_image}, context) => {
+      await User.findOneAndUpdate(
+        { email },
+        {$addToSet: {vinyl :{title, id, cover_image} }},
+        {new: true}
+      )
     }
   }
 };

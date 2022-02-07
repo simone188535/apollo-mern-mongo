@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const VinylSchema = require('./vinyl');
 
 const userSchema = new Schema({
   username: {
@@ -18,6 +19,7 @@ const userSchema = new Schema({
     trim: true,
     unique: true,
   },
+  vinyl: [VinylSchema]
 });
 
 const User = model('User', userSchema);
