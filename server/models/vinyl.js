@@ -20,11 +20,11 @@ const vinylSchema = new Schema({
   style: {
     type: String,
   },
-  coverImage: {
+  cover_image: {
     type: String
   }
 });
 
-const User = model('Vinyl', vinylSchema);
+const Vinyl = model('Vinyl', vinylSchema);
 
 module.exports = Vinyl;
