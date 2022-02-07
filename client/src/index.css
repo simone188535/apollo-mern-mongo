@@ -1,3 +1,10 @@
+:root {
+  --navy-blue: #05445E;
+  --blue-grotto: #189AB4;
+  --blue-green: #75E6DA;
+  --baby-blue: #D4F1F4;
+}
+
 html, * {
   margin: 0;
   padding: 0;
