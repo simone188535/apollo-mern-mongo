@@ -1,8 +1,14 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
+const { signToken } = require('../utils/auth');
+const axios = require('axios');
 
 const resolvers = {
   Query: {
+    vinyl: async (_, args) => {
+      const { data } = await axios.get('url')
+      return data.results
+    },
     users: async () => {
       return User.find();
     },

@@ -1,6 +1,16 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  type Vinyl {
+    id: ID!
+    title: String!
+    format: String
+    label: String
+    type: String
+    genre: String
+    style: String
+    coverImage: String
+  }
   type User {
     _id: ID
     username: String
@@ -12,6 +22,7 @@ const typeDefs = gql`
     user: User
   }
   type Query {
+    vinyl: [Vinyl]
     users: [User]
     user(id: ID!): User
     me: User
