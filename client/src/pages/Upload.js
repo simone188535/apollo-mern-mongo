@@ -1,26 +1,37 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations";
-import FormikStatus from "../components/Common/FormikStatus";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { ADD_VINYL } from "../utils/mutations";
+import FormikStatus from "../components/Common/FormikStatus";
+import Auth from "../utils/auth";
 
 const Upload = () => {
-  const [addUser] = useMutation(ADD_USER);
+  const [addVinyl] = useMutation(ADD_VINYL);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
-    //   const { username, email, password } = values;
-    //   try {
-    //     if (successfulSubmission) setSuccessfulSubmission(false);
-    //     const { data } = await addUser({
-    //       variables: { username, email, password },
-    //     });
-    //     setSubmitting(false);
-    //   } catch (err) {
-    //     console.error(err);
-    //     setSuccessfulSubmission(true);
-    //   }
+    const { title, format, label, type, genre, style, coverImage } = values;
+
+    try {
+      if (successfulSubmission) setSuccessfulSubmission(false);
+      await addVinyl({
+        variables: {
+          userId: Auth.getProfile().data._id,
+          title,
+          format,
+          label,
+          type,
+          genre,
+          style,
+          cover_image: coverImage,
+        },
+      });
+      setSubmitting(false);
+    } catch (err) {
+      console.error(err);
+      setSuccessfulSubmission(true);
+    }
   };
 
   return (
@@ -163,9 +174,7 @@ const Upload = () => {
             >
               <option value="Dance Pop">Dance Pop</option>
               <option value="Pop Dance">Pop Dance</option>
-              <option value="Electropop">
-              Electropop
-              </option>
+              <option value="Electropop">Electropop</option>
 
               <option value="Modern Rock">Modern Rock</option>
               <option value="Classic Rock">Classic Rock</option>
@@ -185,7 +194,9 @@ const Upload = () => {
               <option value="Modern Blues">Modern Blues</option>
 
               <option value="Acoustic">Acoustic</option>
-              <option value="Contemporary Classical">Contemporary Classical</option>
+              <option value="Contemporary Classical">
+                Contemporary Classical
+              </option>
               <option value="Modern Classical">Modern Classical</option>
 
               <option value="Other">Other</option>
