@@ -6,6 +6,8 @@ import { FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
+import { useQuery } from '@apollo/client';
+import { QUERY_VINYL, QUERY_VINYLS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -17,8 +19,11 @@ function Navbar() {
 
   const [searchTerm, setSearchTerm] = useState()
 
-  const search = (term) => {
-    console.log(searchTerm, term)
+  const { loading, data } = useQuery(QUERY_VINYLS)
+  const vinyls = data?.vinyls[0] || []
+
+  const search = () => {
+    console.log(vinyls)
   }
 
   if (Auth.loggedIn()) {
@@ -62,7 +67,6 @@ function Navbar() {
             title="Search by"
             id="input-group-dropdown-2"
             align="end"
-          // onSubmit={() => search()}
           >
             <Dropdown.Item onClick={() => search("artist")} >Artist</Dropdown.Item>
             <Dropdown.Item onClick={() => search("song")} >Song</Dropdown.Item>
