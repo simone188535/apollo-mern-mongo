@@ -37,7 +37,16 @@ const typeDefs = gql`
   type Mutation {
     addUser(email:String!, username:String!, password:String!): Auth
     login(email:String!, password:String!): Auth
-    addVinyl(id:ID!, title: String!, cover_image: String!, email: String!): Auth
+    addVinyl(
+      id:ID!, 
+      title: String!, 
+      format: [String]!, 
+      label: [String]!, 
+      type: String!, 
+      genre: [String]!,
+      style: [String],
+      cover_image: String!
+    ): Vinyl
   }
 `;
 
