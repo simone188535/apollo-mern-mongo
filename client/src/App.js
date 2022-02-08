@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Upload from './pages/Upload';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SearchResults from './pages/SearchResults';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -64,6 +65,9 @@ function App() {
             </Route>
             <Route exact path="/upload">
               <Upload />
+            </Route>
+            <Route exact path="/results">
+              <SearchResults />
             </Route>
           </div>
           <Footer />

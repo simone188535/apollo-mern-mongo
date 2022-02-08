@@ -1,9 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import { InputGroup } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 import Auth from '../../utils/auth';
 
@@ -12,6 +14,15 @@ function Navbar() {
     event.preventDefault();
     Auth.logout();
   };
+
+  const [searchTerm, setSearchTerm] = useState("")
+  const [type, setType] = useState("")
+
+
+
+  if (searchTerm && type) {
+    return <Redirect to={`/results?term=${searchTerm}&type=${type}`} />
+  }
 
   if (Auth.loggedIn()) {
     return (
@@ -44,19 +55,26 @@ function Navbar() {
       </>
     );
   }
+
   // If logged out show login controls
   return (
     <>
       <div className='d-flex'>
         <InputGroup className="mb-3">
-          <FormControl
-            placeholder="Search Vinyls"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-          />
-          <Button variant="outline-secondary" id="button-addon2">
-            Search
-          </Button>
+          <FormControl aria-label="Text input with dropdown button" placeholder='ex. Elvis'
+            onChange={event => setSearchTerm(event.target.value)} />
+
+          <DropdownButton
+            variant="outline-secondary"
+            title="Search by"
+            id="input-group-dropdown-2"
+            align="end"
+          >
+            <Dropdown.Item onClick={() => setType("artist")} >Artist</Dropdown.Item>
+            <Dropdown.Item onClick={() => setType("song")} >Song</Dropdown.Item>
+            <Dropdown.Item onClick={() => setType("genre")} >Genre</Dropdown.Item>
+
+          </DropdownButton>
         </InputGroup>
         <NavDropdown title='Account'>
           <Link to="/login">
