@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const VinylSchema = require('./vinyl');
+const vinylSchema = require('./vinyl');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -20,7 +20,7 @@ const userSchema = new Schema({
     trim: true,
     unique: true,
   },
-  vinyl: [VinylSchema]
+  vinyl: [vinylSchema]
 });
 
 // set up pre-save middleware to create password

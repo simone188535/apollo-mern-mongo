@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, UserVinyl } = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 const axios = require('axios');
 
@@ -50,13 +50,13 @@ const resolvers = {
 
       return { token, user };
     },
-    addVinyl: async (_, {email, title, id, cover_image}, context) => {
+    addVinyl: async (_, {email, title, id, cover_image}) => {
       await User.findOneAndUpdate(
         { email },
         {$addToSet: {vinyl :{title, id, cover_image} }},
         {new: true}
       )
-    }
+    },
   }
 };
 
