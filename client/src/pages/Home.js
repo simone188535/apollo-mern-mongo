@@ -2,36 +2,49 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 // Utilities
-import Auth from '../utils/auth';
-import { QUERY_USERS } from '../utils/queries';
+// import Auth from '../utils/auth';
+import { QUERY_VINYLS } from '../utils/queries';
 // Components
-import UserList from '../components/UserList';
+// import UserList from '../components/UserList';
+
+import './assets/css/home.css'
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_USERS);
-  const users = data?.users || [];
+  const { loading, data } = useQuery(QUERY_VINYLS);
+  const vinyls = data?.vinyls || [];
 
-  const renderUserList = () => {
-    if (loading) {
-      return <h2>Loading...</h2>
-    } else {
-      return <UserList users={users} title="List of Users" />
-    }
-  } 
+  console.log(vinyls)
 
-  const renderUsername = () => {
-    if (!Auth.loggedIn()) return null;
-    return Auth.getProfile().data.username;
-  }
+  // const renderVinyls = () => {
+  //   if (loading) {
+  //     return <h2>Loading...</h2>
+  //   } else {
+  //     return <h1>{vinyls[0].title}</h1>
+  //   }
+  // }
 
   return (
-    <main>
-      <div>
-        {renderUsername()}
-      </div>
-      <div>
-        {renderUserList()}
-      </div>
+    <main className="container-fluid home">
+      <ul className="row justify-content-center">
+        {vinyls.map((vinyl) => {
+          return (
+            <li
+              className="card border border-dark p-3 mt-5 m-3 col-md-3"
+              key={vinyl.id}>
+              <h2
+                className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
+              <img
+                className="resultImage d-block mx-auto"
+                alt={vinyl.title}
+                src={vinyl.cover_image} />
+            </li>
+          )
+        })}
+        {/* <h1>test</h1>
+        {vinyls[0].title}
+        <img alt='' src={vinyls[0].cover_image} />
+        {renderVinyls()} */}
+      </ul>
     </main>
   );
 };
