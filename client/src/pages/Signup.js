@@ -1,93 +1,72 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
-import Card from 'react-bootstrap/Card'
-import Auth from '../utils/auth';
-import './assets/css/signup.css'
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import FormikStatus from "../components/Common/FormikStatus";
+import Auth from "../utils/auth";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./assets/css/auth.css";
 
-const Signup = () => {
-  const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+const Signup = () => { 
+  const [addUser] = useMutation(ADD_USER);
+  const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    const { username, email, password } = values;
 
     try {
+      if (successfulSubmission) setSuccessfulSubmission(false);
+    
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: { username, email, password },
       });
 
       Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
+      setSubmitting(false);
+    } catch (err) {
+      console.error(err);
+      setSuccessfulSubmission(true);
     }
-  };
-
-  const renderForm = () => {
-    if (data) {
-      return (
-        <p>
-          Success! You may now head{' '}
-          <Link to="/">back to the homepage.</Link>
-        </p>
-      )
-    }
-    return (
-      <form onSubmit={handleFormSubmit}>
-        <div className='formInput'>
-          <input
-            placeholder="Username"
-            name="username"
-            type="text"
-            value={formState.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formInput'>
-          <input
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='formInput'>
-          <input
-            placeholder='Password'
-            name="password"
-            type="password"
-            value={formState.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">
-          Submit
-        </button>
-      </form>
-    );
   };
 
   return (
-    <Card className='signupCard bg-dark text-light'>
-      <h4>Sign Up</h4>
-      {renderForm()}
-      {error && <div>{error.message}</div>}
-    </Card>
+    <section className="signup-page container">
+      <div className="row">
+      <h4 className="col">Sign Up</h4>
+      </div>
+      <div className="row">
+      <Formik
+        initialValues={{ username: "", email: "", password: "" }}
+        validationSchema={Yup.object({
+          username: Yup.string()
+            .min(5, "longer than 5 characters")
+            .required("Required"),
+          email: Yup.string()
+            .email("Invalid email address")
+            .required("Required"),
+          password: Yup.string().required("Required"),
+        })}
+        onSubmit={handleFormSubmit}
+      >
+        <Form className="col d-flex flex-column">
+          <label htmlFor="username" className="mb-2">Username</label>
+          <Field name="username" type="text" className="mb-2 form-control"/>
+          <ErrorMessage name="username" component="div" className="text-danger mb-2"/>
+
+          <label htmlFor="email" className="mb-2">Email Address</label>
+          <Field name="email" type="email" className="mb-2 form-control"/>
+          <ErrorMessage name="email" component="div" className="text-danger mb-2"/>
+
+          <label htmlFor="password" className="mb-2">Password</label>
+          <Field name="password" type="password" className="mb-2 form-control"/>
+          <ErrorMessage name="password" component="div" className="text-danger mb-3"/>
+
+          <button type="submit" className="btn text-light submit-btn mb-2">Submit</button>
+          <FormikStatus err={successfulSubmission} successMessage="Sign Up Successful!"/>
+        </Form>
+      </Formik>
+      </div>
+    </section>
   );
 };
 
