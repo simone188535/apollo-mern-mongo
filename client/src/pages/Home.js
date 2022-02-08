@@ -7,6 +7,7 @@ import { QUERY_VINYLS } from '../utils/queries';
 // Components
 // import UserList from '../components/UserList';
 
+
 import './assets/css/home.css'
 
 const Home = () => {
