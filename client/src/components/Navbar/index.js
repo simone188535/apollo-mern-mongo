@@ -6,8 +6,6 @@ import { FormControl } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
-import { QUERY_VINYL, QUERY_VINYLS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -19,7 +17,7 @@ function Navbar() {
 
   const [searchTerm, setSearchTerm] = useState("")
   const [type, setType] = useState("")
- 
+
 
 
   if (searchTerm && type) {
@@ -54,7 +52,7 @@ function Navbar() {
       </>
     );
   }
-  
+
   // If logged out show login controls
   return (
     <>
