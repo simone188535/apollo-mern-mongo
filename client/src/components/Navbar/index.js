@@ -17,8 +17,8 @@ function Navbar() {
 
   const [searchTerm, setSearchTerm] = useState()
 
-  const search = () => {
-    console.log(searchTerm)
+  const search = (term) => {
+    console.log(searchTerm, term)
   }
 
   if (Auth.loggedIn()) {
@@ -64,9 +64,10 @@ function Navbar() {
             align="end"
           // onSubmit={() => search()}
           >
-            <Dropdown.Item onClick={() => search()} href="#">Artist</Dropdown.Item>
-            <Dropdown.Item href="#">Another action</Dropdown.Item>
-            <Dropdown.Item href="#">Something else here</Dropdown.Item>
+            <Dropdown.Item onClick={() => search("artist")} >Artist</Dropdown.Item>
+            <Dropdown.Item onClick={() => search("song")} >Song</Dropdown.Item>
+            <Dropdown.Item onClick={() => search("genre")} >Genre</Dropdown.Item>
+
           </DropdownButton>
         </InputGroup>
         <NavDropdown title='Account'>
