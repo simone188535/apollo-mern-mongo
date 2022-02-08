@@ -1,5 +1,5 @@
 @import '../../../index.css';
 
-.signup-page .submit-btn, .login-page .submit-btn {
+.signup-page .submit-btn, .login-page .submit-btn, .upload-page .submit-btn {
   background-color: var(--blue-grotto);
 }
