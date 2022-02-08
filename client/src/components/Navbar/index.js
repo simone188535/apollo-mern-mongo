@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import { InputGroup } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
@@ -17,13 +17,13 @@ function Navbar() {
     Auth.logout();
   };
 
-  const [searchTerm, setSearchTerm] = useState()
+  const [searchTerm, setSearchTerm] = useState("")
+  const [type, setType] = useState("")
+ 
 
-  const { loading, data } = useQuery(QUERY_VINYLS)
-  const vinyls = data?.vinyls[0] || []
 
-  const search = () => {
-    console.log(vinyls)
+  if (searchTerm && type) {
+    return <Redirect to={`/results?term=${searchTerm}&type=${type}`} />
   }
 
   if (Auth.loggedIn()) {
@@ -54,6 +54,7 @@ function Navbar() {
       </>
     );
   }
+  
   // If logged out show login controls
   return (
     <>
@@ -68,9 +69,9 @@ function Navbar() {
             id="input-group-dropdown-2"
             align="end"
           >
-            <Dropdown.Item onClick={() => search("artist")} >Artist</Dropdown.Item>
-            <Dropdown.Item onClick={() => search("song")} >Song</Dropdown.Item>
-            <Dropdown.Item onClick={() => search("genre")} >Genre</Dropdown.Item>
+            <Dropdown.Item onClick={() => setType("artist")} >Artist</Dropdown.Item>
+            <Dropdown.Item onClick={() => setType("song")} >Song</Dropdown.Item>
+            <Dropdown.Item onClick={() => setType("genre")} >Genre</Dropdown.Item>
 
           </DropdownButton>
         </InputGroup>
