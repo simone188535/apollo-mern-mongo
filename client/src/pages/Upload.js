@@ -45,7 +45,7 @@ const Upload = () => {
             label: Yup.array().min(1, "A label must be provided"),
             type: Yup.string().required("Required"),
             genre: Yup.array().min(1, "A genre must be provided"),
-            style: Yup.array().min(1, "A style must be provided"),
+            style: Yup.array(),
             coverImage: Yup.string().required("A cover image is required."),
           })}
           onSubmit={handleFormSubmit}
