@@ -38,7 +38,7 @@ const typeDefs = gql`
     addUser(email:String!, username:String!, password:String!): Auth
     login(email:String!, password:String!): Auth
     addVinyl(
-      id:ID!, 
+      userId: ID!, 
       title: String!, 
       format: [String]!, 
       label: [String]!, 
@@ -46,7 +46,7 @@ const typeDefs = gql`
       genre: [String]!,
       style: [String],
       cover_image: String!
-    ): Vinyl
+    ): Auth
   }
 `;
 
