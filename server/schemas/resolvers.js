@@ -50,12 +50,14 @@ const resolvers = {
 
       return { token, user };
     },
-    addVinyl: async (_, {email, title, id, cover_image}) => {
-      await User.findOneAndUpdate(
-        { email },
-        {$addToSet: {vinyl :{title, id, cover_image} }},
+    addVinyl: async (_, {userId, title, format, label, type, genre, style, cover_image}) => {
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        {$addToSet: {vinyl : {title, format, label, type, genre, style, cover_image} }},
         {new: true}
       )
+
+      return { user };
     },
   }
 };

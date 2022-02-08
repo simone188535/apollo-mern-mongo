@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const vinylSchema = new Schema({
   title: {
@@ -6,19 +6,19 @@ const vinylSchema = new Schema({
     required: true,
   },
   format: {
-    type: String,
+    type: [String],
   },
   label: {
-    type: String,
+    type: [String],
   },
   type: {
     type: String,
   },
   genre: {
-    type: String,
+    type: [String],
   },
   style: {
-    type: String,
+    type: [String],
   },
   cover_image: {
     type: String

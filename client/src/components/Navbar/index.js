@@ -41,6 +41,9 @@ function Navbar() {
         </div>
         <div>
           <NavDropdown title='Account'>
+          <Link to="/upload">
+              Upload
+            </Link>
             <Link to="/me">
               {Auth.getProfile().data.username}'s profile
             </Link>
