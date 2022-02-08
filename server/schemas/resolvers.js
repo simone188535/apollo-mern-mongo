@@ -51,11 +51,13 @@ const resolvers = {
       return { token, user };
     },
     addVinyl: async (_, {title, format, label, type, genre, style, cover_image, userId}) => {
-      await User.findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         { userId },
         {$addToSet: {vinyl : {title, format, label, type, genre, style, cover_image} }},
         {new: true}
       )
+
+      return { user };
     },
   }
 };
