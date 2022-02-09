@@ -32,6 +32,7 @@ export const QUERY_USER = gql`
       username
       email
       password
+      vinyl
     }
   }
 `;
