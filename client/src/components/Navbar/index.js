@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import Auth from "../../utils/auth";
 
 function Navbar() {
+  const history = useHistory();
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -14,9 +16,13 @@ function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("");
 
-  if (searchTerm && type) {
-    return <Redirect to={`/results?term=${searchTerm}&type=${type}`} />;
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (searchTerm && type) {
+      history.push(`/results?q=${searchTerm}&${type}`)
+    }
+  };
 
   const dropDownItem = Auth.loggedIn() ? (
     <>
@@ -75,31 +81,31 @@ function Navbar() {
           aria-labelledby="search-dropdown"
         >
           <li>
-            <a
+            <Link
               className="dropdown-item"
-              href="#"
+              to="#"
               onClick={() => setType("artist")}
             >
               Artist
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="dropdown-item"
-              href="#"
+              to="#"
               onClick={() => setType("song")}
             >
               Song
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               className="dropdown-item"
-              href="#"
+              to="#"
               onClick={() => setType("genre")}
             >
               Genre
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -123,7 +129,9 @@ function Navbar() {
         </span>
       </button>
       <div className="collapse navbar-collapse" id="navbarScroll">
-        <form className="d-flex mx-auto w-75">
+        <form
+          className="d-flex mx-auto w-75"
+          onSubmit={handleSubmit}>
           <input
             className="form-control"
             type="search"
@@ -132,19 +140,22 @@ function Navbar() {
             onChange={(event) => setSearchTerm(event.target.value)}
           />
           {searchButton}
+          <button class="btn btn-secondary" type="submit">
+            Search
+          </button>
         </form>
         <ul className="navbar-nav my-2 my-lg-0 navbar-nav-scroll">
           <li className="nav-item dropdown">
-            <a
+            <Link
               className="nav-link dropdown-toggle text-light text-center"
-              href="#"
+              to="#"
               id="navbarScrollingDropdown"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
               Account
-            </a>
+            </Link>
             <ul
               className="dropdown-menu text-center"
               aria-labelledby="navbarScrollingDropdown"

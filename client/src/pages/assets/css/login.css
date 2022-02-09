@@ -1,0 +1,14 @@
+#root {
+  background-color: var(--baby-blue)
+}
+
+
+#root .login-page {
+  width: 60%;
+}
+
+@media (max-width: 576px) {
+  #root .login-page {
+    width: 80%;
+  }
+}

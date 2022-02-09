@@ -29,7 +29,7 @@ const typeDefs = gql`
   }
   type Query {
     vinyl: [Vinyl]
-    vinyls: [Vinyls]
+    vinyls(q:String, artist:String, song:String, genre:String): [Vinyls]
     users: [User]
     user(id: ID!): User
     me: User

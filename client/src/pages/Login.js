@@ -6,6 +6,7 @@ import Auth from "../utils/auth";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./assets/css/auth.css";
+import "./assets/css/login.css";
 
 const Login = () => {
   const [login] = useMutation(LOGIN_USER);

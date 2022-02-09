@@ -16,8 +16,8 @@ export const QUERY_VINYL = gql`
 `;
 
 export const QUERY_VINYLS = gql`
-  query vinyls {
-    vinyls {
+  query vinyls($q:String, $artist:String, $song:String, $genre:String) {
+    vinyls(q:$q, artist:$artist, song:$song, genre:$genre) {
       id
       title
       cover_image
