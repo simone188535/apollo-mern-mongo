@@ -53,27 +53,27 @@ const Profile = () => {
   return (
     <div className="container-fluid profile-styles min-vh-100">
       <div className="row">
-      <div className="card-profile border border-dark p-3 shadow-md mt-5 m-3 col-3 col-md-3 vw-25">
-        {renderCurrentUserInfo()}
-      </div>
-      <div>
-        <ul className="col h-100 justify-content-center mb-0">
-          {user.vinyl.map((vinyl) => {
-            return (
-              <li
-                className="card border border-dark p-3 mt-5 m-3 col-md-3"
-                key={vinyl.id}>
-                <h2
-                  className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
-                <img
-                  className="resultImage d-block mx-auto"
-                  alt={vinyl.title}
-                  src={vinyl.cover_image} />
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+        <div className="card-profile border border-dark p-3 shadow-md mt-5 m-3 col-3 col-md-3 vw-25">
+          {renderCurrentUserInfo()}
+        </div>
+        <div className='card col vw-75 p-3 mt-5 m-3'>
+          <ul className="justify-content-center mb-0">
+            {user.vinyl.map((vinyl) => {
+              return (
+                <li
+                  className="card border border-dark p-3 mt-5 m-3 col-md-3"
+                  key={vinyl.id}>
+                  <h2
+                    className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
+                  <img
+                    className="resultImage d-block mx-auto"
+                    alt={vinyl.title}
+                    src={vinyl.cover_image} />
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
