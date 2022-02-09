@@ -31,7 +31,7 @@ function Navbar() {
         </Link>
       </li>
       <li>
-        <button onClick={logout}>Logout</button>
+        <button className="btn btn-primary" onClick={logout}>Logout</button>
       </li>
     </>
   ) : (
@@ -53,7 +53,7 @@ function Navbar() {
 
   const searchButton = Auth.loggedIn() ? (
     <>
-      <button class="btn btn-outline-success" type="submit">
+      <button class="btn btn-secondary" type="submit">
         Search
       </button>
     </>
@@ -146,7 +146,7 @@ function Navbar() {
               Account
             </a>
             <ul
-              className="dropdown-menu"
+              className="dropdown-menu text-center"
               aria-labelledby="navbarScrollingDropdown"
             >
               {dropDownItem}
