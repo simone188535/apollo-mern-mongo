@@ -11,7 +11,7 @@ const Login = () => {
   const [login] = useMutation(LOGIN_USER);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
-  // submit form
+
   const handleFormSubmit = (async (values, { setSubmitting }) => {
     const { email, password } = values;
 
@@ -34,35 +34,35 @@ const Login = () => {
 
   return (
     <section className="login-page container mt-5 min-vh-100">
-    <div className="row">
-    <h4 className="col">Login</h4>
-    </div>
-    <div className="row">
-    <Formik
-      initialValues={{ email: "", password: "" }}
-      validationSchema={Yup.object({
-        email: Yup.string()
-          .email("Invalid email address")
-          .required("Required"),
-        password: Yup.string().required("Required"),
-      })}
-      onSubmit={handleFormSubmit}
-    >
-      <Form className="col d-flex flex-column">
-        <label htmlFor="email" className="mb-2">Email Address</label>
-        <Field name="email" type="email" className="mb-2 form-control"/>
-        <ErrorMessage name="email" component="div" className="text-danger mb-2"/>
+      <div className="row">
+        <h4 className="col">Login</h4>
+      </div>
+      <div className="row">
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={Yup.object({
+            email: Yup.string()
+              .email("Invalid email address")
+              .required("Required"),
+            password: Yup.string().required("Required"),
+          })}
+          onSubmit={handleFormSubmit}
+        >
+          <Form className="col d-flex flex-column">
+            <label htmlFor="email" className="mb-2">Email Address</label>
+            <Field name="email" type="email" className="mb-2 form-control" />
+            <ErrorMessage name="email" component="div" className="text-danger mb-2" />
 
-        <label htmlFor="password" className="mb-2">Password</label>
-        <Field name="password" type="password" className="mb-2 form-control"/>
-        <ErrorMessage name="password" component="div" className="text-danger mb-3"/>
+            <label htmlFor="password" className="mb-2">Password</label>
+            <Field name="password" type="password" className="mb-2 form-control" />
+            <ErrorMessage name="password" component="div" className="text-danger mb-3" />
 
-        <button type="submit" className="btn text-light submit-btn mb-2">Submit</button>
-        <FormikStatus err={successfulSubmission} successMessage="Login Successful!"/>
-      </Form>
-    </Formik>
-    </div>
-  </section>
+            <button type="submit" className="btn text-light submit-btn mb-2">Submit</button>
+            <FormikStatus err={successfulSubmission} successMessage="Login Successful!" />
+          </Form>
+        </Formik>
+      </div>
+    </section>
   );
 };
 
