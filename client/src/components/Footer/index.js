@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer container-fluid d-flex justify-content-center align-items-center">
       <section className="row">
-        <div className="col text-center text-light fs-5">&#169; Vinyl Collection</div>
+        <div className="col text-center fixed-bottom text-light fs-5">&#169; Vinyl Collection</div>
       </section>
     </footer>
   );
