@@ -14,7 +14,6 @@ const resolvers = {
       const params = new URLSearchParams(args);
       params.append('token', 'WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh');
 
-      console.log(params.toString())
       const { data } = await axios.get(
         `https://api.discogs.com/database/search?${params.toString()}`
       )
