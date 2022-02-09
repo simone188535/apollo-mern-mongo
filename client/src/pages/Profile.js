@@ -1,12 +1,12 @@
 // Node Modules
-import React from 'react';
-import { Redirect, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import React from "react";
+import { Redirect, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 // Utilities
-import Auth from '../utils/auth';
-import { QUERY_USERS, QUERY_USER, QUERY_ME } from '../utils/queries';
+import Auth from "../utils/auth";
+import { QUERY_USERS, QUERY_USER, QUERY_ME } from "../utils/queries";
 // Components
-import UserList from '../components/UserList';
+import UserList from "../components/UserList";
 
 const Profile = () => {
   const { id } = useParams();
@@ -35,10 +35,14 @@ const Profile = () => {
 
   if (!user?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
+      <section className="container profile-page mt-5 min-vh-100">
+        <div className="row">
+          <h4>
+            You need to be logged in to see this. Use the navigation links above
+            to sign up or log in!
+          </h4>
+        </div>
+      </section>
     );
   }
 
@@ -57,18 +61,16 @@ const Profile = () => {
         <li>email: {user.email}</li>
       </ul>
     );
-  }
+  };
 
   return (
-    <div>
-      <div>
-        <h2>
-          Viewing {id ? `${user.username}'s` : 'your'} profile.
-        </h2>
+    <section className="container profile-page mt-5 min-vh-100">
+      <div className="row">
+        <h2>Viewing {id ? `${user.username}'s` : "your"} profile.</h2>
         {renderCurrentUserInfo()}
         {renderUserList()}
       </div>
-    </div>
+    </section>
   );
 };
 
