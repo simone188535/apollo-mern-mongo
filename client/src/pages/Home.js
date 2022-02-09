@@ -1,11 +1,6 @@
-// Node Modules
 import React from 'react';
 import { useQuery } from '@apollo/client';
-// Utilities
-// import Auth from '../utils/auth';
 import { QUERY_VINYLS } from '../utils/queries';
-// Components
-// import UserList from '../components/UserList';
 
 
 import './assets/css/home.css'
@@ -41,10 +36,6 @@ const Home = () => {
             </li>
           )
         })}
-        {/* <h1>test</h1>
-        {vinyls[0].title}
-        <img alt='' src={vinyls[0].cover_image} />
-        {renderVinyls()} */}
       </ul>
     </main>
   );
