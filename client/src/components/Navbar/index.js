@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { NavDropdown } from "react-bootstrap";
-import { InputGroup } from "react-bootstrap";
-import { FormControl } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import { DropdownButton } from "react-bootstrap";
-import { Dropdown } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import Auth from "../../utils/auth";
 
@@ -55,108 +51,64 @@ function Navbar() {
 
   const placeholder = Auth.loggedIn() ? "Search Vinyls" : "ex. Elvis";
 
-  const searchButton = Auth.loggedIn() ? <>
-  <button class="btn btn-outline-success" type="submit">Search</button>
-  </> : <>
-  <div className="btn-group">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="search-dropdown"
-              data-bs-toggle="dropdown"
-              data-bs-auto-close="true"
-              aria-expanded="false"
+  const searchButton = Auth.loggedIn() ? (
+    <>
+      <button class="btn btn-outline-success" type="submit">
+        Search
+      </button>
+    </>
+  ) : (
+    <>
+      <div className="btn-group">
+        <button
+          className="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="search-dropdown"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="true"
+          aria-expanded="false"
+        >
+          Search by
+        </button>
+        <ul
+          className="dropdown-menu account-dropdown"
+          aria-labelledby="search-dropdown"
+        >
+          <li>
+            <a
+              className="dropdown-item"
+              href="#"
+              onClick={() => setType("artist")}
             >
-              Search by
-            </button>
-            <ul className="dropdown-menu account-dropdown" aria-labelledby="search-dropdown">
-              <li>
-                <a
-                  className="dropdown-item"
-                  href="#"
-                  onClick={() => setType("artist")}
-                >
-                  Artist
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item"
-                  href="#"
-                  onClick={() => setType("song")}
-                >
-                  Song
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item"
-                  href="#"
-                  onClick={() => setType("genre")}
-                >
-                  Genre
-                </a>
-              </li>
-            </ul>
-          </div>
-          </>;
-
-  // if (Auth.loggedIn()) {
-  // return (
-  //   <>
-  //     <div>
-  //       <InputGroup className="mb-3">
-  //         <FormControl
-  //           placeholder="Search Vinyls"
-  //           aria-label="Recipient's username"
-  //           aria-describedby="basic-addon2"
-  //         />
-  //         <Button variant="outline-secondary" id="button-addon2">
-  //           Search
-  //         </Button>
-  //       </InputGroup>
-  //     </div>
-  //     <div>
-  //       <NavDropdown title="Account">
-  //         <Link to="/upload">Upload</Link>
-  //         <Link to="/me">{Auth.getProfile().data.username}'s profile</Link>
-  //         <button onClick={logout}>Logout</button>
-  //       </NavDropdown>
-  //     </div>
-  //   </>
-  // );
-  // }
+              Artist
+            </a>
+          </li>
+          <li>
+            <a
+              className="dropdown-item"
+              href="#"
+              onClick={() => setType("song")}
+            >
+              Song
+            </a>
+          </li>
+          <li>
+            <a
+              className="dropdown-item"
+              href="#"
+              onClick={() => setType("genre")}
+            >
+              Genre
+            </a>
+          </li>
+        </ul>
+      </div>
+    </>
+  );
 
   // If logged out show login controls
   return (
     <>
-      {/* <div className='d-flex'>
-        <InputGroup className="mb-3">
-          <FormControl aria-label="Text input with dropdown button" placeholder='ex. Elvis'
-            onChange={event => setSearchTerm(event.target.value)} />
-
-          <DropdownButton
-            variant="outline-secondary"
-            title="Search by"
-            id="input-group-dropdown-2"
-            align="end"
-          >
-            <Dropdown.Item onClick={() => setType("artist")} >Artist</Dropdown.Item>
-            <Dropdown.Item onClick={() => setType("song")} >Song</Dropdown.Item>
-            <Dropdown.Item onClick={() => setType("genre")} >Genre</Dropdown.Item>
-
-          </DropdownButton>
-        </InputGroup>
-        <NavDropdown title='Account'>
-          <Link to="/login">
-            Login
-          </Link>
-          <Link to="/signup">
-            Signup
-          </Link>
-        </NavDropdown>
-      </div> */}
-
       <button
         className="navbar-toggler"
         type="button"
@@ -166,12 +118,14 @@ function Navbar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon mt-2 text-light">
+          <FontAwesomeIcon icon={faBars} />
+        </span>
       </button>
       <div className="collapse navbar-collapse" id="navbarScroll">
-      <form className="d-flex mx-auto w-75">
+        <form className="d-flex mx-auto w-75">
           <input
-            className="form-control me-2"
+            className="form-control"
             type="search"
             placeholder={placeholder}
             aria-label="Search"
@@ -182,7 +136,7 @@ function Navbar() {
         <ul className="navbar-nav my-2 my-lg-0 navbar-nav-scroll">
           <li className="nav-item dropdown">
             <a
-              className="nav-link dropdown-toggle text-light"
+              className="nav-link dropdown-toggle text-light text-center"
               href="#"
               id="navbarScrollingDropdown"
               role="button"
