@@ -54,6 +54,10 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      vinyl {
+        title
+        cover_image
+      }
     }
   }
 `;
