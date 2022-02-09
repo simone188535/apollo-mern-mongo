@@ -5,9 +5,9 @@ const axios = require('axios');
 
 const resolvers = {
   Query: {
-    vinyl: async (_, args) => {
-      const { data } = await axios.get('https://api.discogs.com/database/search?q=nirvana-nevermind&title?page=1&per_page=1&token=WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh')
-      return data.results
+    vinyl: async (_, { title }) => {
+      const { data } = await axios.get(`https://api.discogs.com/database/search?q=${title}&title?page=1&per_page=1&token=WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh`)
+      return data.results[0]
     },
     vinyls: async (_, args) => {
       console.log('args:', args)

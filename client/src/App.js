@@ -16,6 +16,7 @@ import Upload from './pages/Upload';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SearchResults from './pages/SearchResults';
+import Vinyl from './pages/Vinyl';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -62,8 +63,11 @@ function App() {
               <Route exact path="/upload">
                 <Upload />
               </Route>
-              <Route path="/results">
+              <Route exact path="/results">
                 <SearchResults />
+              </Route>
+              <Route exact path="/vinyl/:title">
+                <Vinyl />
               </Route>
             </Switch>
           </div>
