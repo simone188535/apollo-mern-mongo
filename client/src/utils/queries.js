@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_VINYL = gql`
-  query vinyl {
-    vinyl {
+  query vinyl($title:String) {
+    vinyl(title:$title) {
       id
       title
       format
