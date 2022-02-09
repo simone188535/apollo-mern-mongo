@@ -1,11 +1,16 @@
-header {
+@import '../../../../index.css';
+
+.nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 1rem;
-  background-color: black;
+  background-color: var(--blue-grotto);
 }
 
-NavDropdown {
-  background-color: aqua;
+
+@media (min-width: 992px) {
+  .nav .navbar-nav .dropdown-menu.show  {
+    left: -47%;
+  }
 }

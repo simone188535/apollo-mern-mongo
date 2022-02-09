@@ -1,0 +1,6 @@
+@import '../../../index.css';
+
+.footer {
+    background-color: var(--blue-grotto);
+    height: 100px;
+}
