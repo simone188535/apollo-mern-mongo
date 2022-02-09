@@ -59,7 +59,7 @@ function Navbar() {
 
   const searchButton = Auth.loggedIn() ? (
     <>
-      <button class="btn btn-secondary" type="submit">
+      <button className="btn btn-secondary" type="submit">
         Search
       </button>
     </>
@@ -140,7 +140,7 @@ function Navbar() {
             onChange={(event) => setSearchTerm(event.target.value)}
           />
           {searchButton}
-          <button class="btn btn-secondary" type="submit">
+          <button className="btn btn-secondary" type="submit">
             Search
           </button>
         </form>
