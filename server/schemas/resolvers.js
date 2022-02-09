@@ -10,7 +10,13 @@ const resolvers = {
       return data.results
     },
     vinyls: async (_, args) => {
-      const { data } = await axios.get('https://api.discogs.com/database/search?q=elvis&artist&token=WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh')
+      console.log('args:', args)
+      const params = new URLSearchParams(args);
+      params.append('token', 'WDJEflpaEAzNglLEICjGJpcUAwZVIRJiprohmHGh');
+
+      const { data } = await axios.get(
+        `https://api.discogs.com/database/search?${params.toString()}`
+      )
       return data.results
     },
     users: async () => {
@@ -50,11 +56,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addVinyl: async (_, {userId, title, format, label, type, genre, style, cover_image}) => {
+    addVinyl: async (_, { userId, title, format, label, type, genre, style, cover_image }) => {
       const user = await User.findOneAndUpdate(
         { _id: userId },
-        {$addToSet: {vinyl : {title, format, label, type, genre, style, cover_image} }},
-        {new: true}
+        { $addToSet: { vinyl: { title, format, label, type, genre, style, cover_image } } },
+        { new: true }
       )
 
       return { user };
