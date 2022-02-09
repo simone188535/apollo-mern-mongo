@@ -25,7 +25,7 @@ const Home = () => {
   // }
 
   return (
-    <main className="container-fluid home">
+    <main className="container-fluid home min-vh-100">
       <ul className="row justify-content-center">
         {vinyls.map((vinyl) => {
           return (

@@ -28,6 +28,7 @@ const Upload = () => {
         },
       });
       setSubmitting(false);
+      window.location.assign('/');
     } catch (err) {
       console.error(err);
       setSuccessfulSubmission(true);
@@ -35,7 +36,7 @@ const Upload = () => {
   };
 
   return (
-    <section className="upload-page container mt-5">
+    <section className="upload-page container mt-5 min-vh-100">
       <div className="row">
         <h4 className="col">Upload</h4>
       </div>

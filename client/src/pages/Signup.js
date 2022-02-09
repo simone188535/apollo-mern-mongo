@@ -30,7 +30,7 @@ const Signup = () => {
   };
 
   return (
-    <section className="signup-page container mt-5">
+    <section className="signup-page container mt-5 min-vh-100">
       <div className="row">
       <h4 className="col">Sign Up</h4>
       </div>
