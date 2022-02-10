@@ -82,8 +82,9 @@ const resolvers = {
     },
 
     updateUser: async (_, { id, email, username, password }) => {
-      const updatedUser = await User.findByIdAndUpdate(
-        id,
+      
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: id },
         {
           email,
           username,
@@ -95,7 +96,9 @@ const resolvers = {
         }
       );
 
-      return { updatedUser };
+      const token = signToken(updatedUser);
+
+      return { token, updatedUser };
     },
 
     removeVinyl: async (_, { userId, vinylId }) => {
