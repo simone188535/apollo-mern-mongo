@@ -10,7 +10,7 @@ const Home = () => {
         </h1>
         <hr className="my-4 text-light" />
         <p className="lead text-center text-light">
-          Find vinyls for your favorite artists and records. 
+          Find vinyls for your favorite artists and records.
           Upload your personal vinyl collections for others to view
           and access.
         </p>
