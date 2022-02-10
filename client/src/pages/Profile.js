@@ -1,19 +1,27 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_USER, QUERY_ME} from '../utils/queries';
+import { DELETE_VINYL} from '../utils/mutations';
 
 import './assets/css/profile.css'
 
 const Profile = () => {
   const { id } = useParams();
-
+  const [deleteVinyl] = useMutation(DELETE_VINYL);
   const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
     variables: { id },
   });
 
+ const submit = (userId, vinylId) => {
+   deleteVinyl({
+     variables: { userId, vinylId}
+    });
+ }
+
   const user = data?.me || data?.user || {};
+  console.log(user)
 
   if (error) console.log(error);
 
@@ -65,6 +73,7 @@ const Profile = () => {
                   key={vinyl.id}>
                   <h2
                     className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
+                    <button onClick={() => submit(user._id, vinyl.id)}>X</button>
                   <img
                     className="resultImage d-block mx-auto"
                     alt={vinyl.title}
@@ -78,5 +87,6 @@ const Profile = () => {
     </div>
   );
 };
+
 
 export default Profile;

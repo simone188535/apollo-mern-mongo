@@ -81,7 +81,6 @@ const resolvers = {
     },
 
     updateUser: async (_, { id, email, username, password }) => {
-
       const updatedUser = await User.findByIdAndUpdate(
         id,
         {
@@ -97,6 +96,16 @@ const resolvers = {
 
       return { updatedUser };
     },
+
+    removeVinyl: async(_, {userId, vinylId}) => {
+      const user = await User.findOneAndUpdate(
+        {_id: userId},
+        {$pull: {vinyl: {_id : vinylId}}},
+        {new: true}
+      );
+      console.log(user);
+      return {user}
+    }
   },
 };
 

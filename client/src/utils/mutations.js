@@ -28,16 +28,18 @@ export const ADD_USER = gql`
 export const ADD_VINYL = gql`
   mutation addVinyl(
     $userId: ID!
+    $vinylId: Int
     $title: String!
-    $format: [String]!
-    $label: [String]!
-    $type: String!
-    $genre: [String]!
+    $format: [String]
+    $label: [String]
+    $type: String
+    $genre: [String]
     $style: [String]
     $cover_image: String!
   ) {
     addVinyl(
       userId: $userId
+      vinylId:$vinylId,
       title: $title
       format: $format
       label: $label
@@ -98,3 +100,17 @@ export const DELETE_USER = gql`
     }
   }
 `;
+
+export const DELETE_VINYL = gql`
+    mutation removeVinyl ($userId:ID!, $vinylId:ID!){
+    removeVinyl(userId:$userId, vinylId:$vinylId){
+      user{
+        _id
+        vinyl {
+          id
+        }
+      }
+    }
+  }
+
+`
