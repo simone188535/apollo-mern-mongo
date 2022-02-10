@@ -1,5 +1,12 @@
 .home {
-  background: #D4F1F4;
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4), 
+      rgba(0, 0, 0, 0.4)
+    ),
+    url(../images/adrian-korte-5gn2soeAc40-unsplash.jpg);
+  background-size:cover;
+  min-height: 600px;
 }
 
 .card {
@@ -30,4 +37,9 @@ height: auto;
   font-family: 'Roboto', sans-serif;
   font-size: 24px;
   padding: 5%;
+}
+
+.home .hero {
+  padding-top: 15%;
+  max-width: 750px;
 }

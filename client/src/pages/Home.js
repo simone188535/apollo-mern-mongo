@@ -1,42 +1,20 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_VINYLS } from '../utils/queries';
-
-
-import './assets/css/home.css'
+import React from "react";
+import "./assets/css/home.css";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_VINYLS);
-  const vinyls = data?.vinyls || [];
-
-  console.log(vinyls)
-
-  // const renderVinyls = () => {
-  //   if (loading) {
-  //     return <h2>Loading...</h2>
-  //   } else {
-  //     return <h1>{vinyls[0].title}</h1>
-  //   }
-  // }
-
   return (
-    <main className="container-fluid home min-vh-100">
-      <ul className="row justify-content-center mb-0">
-        {vinyls.map((vinyl) => {
-          return (
-            <li
-              className="card border border-dark p-3 mt-5 m-3 col-md-3"
-              key={vinyl.id}>
-              <h2
-                className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
-              <img
-                className="resultImage d-block mx-auto"
-                alt={vinyl.title}
-                src={vinyl.cover_image} />
-            </li>
-          )
-        })}
-      </ul>
+    <main className="container-fluid home">
+      <div className="jumbotron min-vh-100 hero mx-auto px-4">
+        <h1 className="display-4 text-center text-light">
+          <strong>Vinyl Collection</strong>
+        </h1>
+        <hr className="my-4 text-light" />
+        <p className="lead text-center text-light">
+          Find vinyls online for your favorite artists and records. 
+          Upload your personal vinyl collections for others to view
+          and access.
+        </p>
+      </div>
     </main>
   );
 };
