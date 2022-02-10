@@ -55,19 +55,37 @@ function Navbar() {
     </>
   );
 
-  const placeholder = Auth.loggedIn() ? "Search Vinyls" : "ex. Elvis";
 
-  const searchButton = Auth.loggedIn() ? (
+  // If logged out show login controls
+  return (
     <>
-      <button className="btn btn-secondary" type="submit">
-        Search
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon mt-2 text-light">
+          <FontAwesomeIcon icon={faBars} />
+        </span>
       </button>
-    </>
-  ) : (
-    <>
-      <div className="btn-group">
+      <div className="collapse navbar-collapse" id="navbarScroll">
+        <form
+          className="d-flex mx-auto w-75"
+          onSubmit={handleSubmit}>
+          <input
+            className="form-control global-search"
+            type="search"
+            placeholder="ex. Elvis"
+            aria-label="Search"
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
+          <div className="btn-group border-left-0">
         <button
-          className="btn btn-secondary dropdown-toggle"
+          className="btn btn-outline-secondary dropdown-toggle global-search-dropdown me-2"
           type="button"
           id="search-dropdown"
           data-bs-toggle="dropdown"
@@ -109,37 +127,6 @@ function Navbar() {
           </li>
         </ul>
       </div>
-    </>
-  );
-
-  // If logged out show login controls
-  return (
-    <>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarScroll"
-        aria-controls="navbarScroll"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon mt-2 text-light">
-          <FontAwesomeIcon icon={faBars} />
-        </span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarScroll">
-        <form
-          className="d-flex mx-auto w-75"
-          onSubmit={handleSubmit}>
-          <input
-            className="form-control"
-            type="search"
-            placeholder={placeholder}
-            aria-label="Search"
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
-          {searchButton}
           <button className="btn btn-secondary" type="submit">
             Search
           </button>

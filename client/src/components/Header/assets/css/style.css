@@ -8,6 +8,18 @@
   background-color: var(--blue-grotto);
 }
 
+.nav .global-search {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: 0px;
+  border-color: var(--bs-gray);
+}
+
+.nav .global-search-dropdown {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: var(--bs-white);
+}
 
 @media (min-width: 992px) {
   .nav .navbar-nav .dropdown-menu.show  {
