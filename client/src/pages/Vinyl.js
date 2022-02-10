@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_VINYL } from "../utils/queries";
+import './assets/css/vinyl.css'
 
 const Vinyl = () => {
   const { title } = useParams();
@@ -10,27 +11,27 @@ const Vinyl = () => {
   console.log(vinyl)
 
   const vinylProperties = [
-    { id: 'gjfkdlhqgjk', key: 'Format', val: vinyl?.format },
-    { id: 'vfhjdslgqvhjk', key: 'Label', val: vinyl?.label },
-    { id: 'fbhjqklgbhfk', key: 'Genre', val: vinyl?.genre },
-    { id: 'fgdhkqlgh', key: 'Style', val: vinyl?.style }
+    { id: '0', key: 'Title', val: vinyl?.title },
+    { id: '1', key: 'Format', val: vinyl?.format },
+    { id: '2', key: 'Label', val: vinyl?.label?.[0] },
+    { id: '3', key: 'Genre', val: vinyl?.genre },
+    { id: '4', key: 'Style', val: vinyl?.style }
   ];
 
-  const displayVinylProps = vinylProperties.map((vinylProperty) => (vinylProperty.val) ? <h4 key={vinylProperty.id}>{vinylProperty.key} : {vinylProperty.val}</h4> : <></>)
+  const displayVinylProps = vinylProperties.map((vinylProperty) => (vinylProperty.val) ? <h4 className="text-center p-3 fs-5 border-bottom" key={vinylProperty.id}>{vinylProperty.key} : {vinylProperty.val}</h4> : <></>)
 
   if (loading) {
-    return <h1>loading...</h1>
+    return <h1 className="text-center display-1">loading...</h1>
   }
   return (
     <main className="container-fluid home min-vh-100">
-      <h1 className="container text-center bg-black text-light display-5 p-1 rounded-3">{vinyl.title}</h1>
       <ul className="row justify-content-center mb-0">
         <li
-          className="card border border-dark p-3 mt-5 m-3 col-md-3"
+          className="card text-left border border-dark p-3 mt-5 mb-5 col-md-6"
           key={vinyl.id}>
           {displayVinylProps}
           <img
-            className="resultImage d-block mx-auto"
+            className="d-block mx-auto styles"
             alt={vinyl.title}
             src={vinyl.cover_image}
           />
