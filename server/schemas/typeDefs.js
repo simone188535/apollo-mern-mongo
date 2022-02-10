@@ -49,7 +49,7 @@ const typeDefs = gql`
       cover_image: String!
     ): Auth
     deleteUser(id: ID!): Auth
-    updateUser(id: ID!, email:String, username:String, password:String): Auth
+    updateUser(id: ID!, email: String, username: String, password: String): Auth
     removeVinyl(userId: ID!, vinylId: ID!):Auth
   }
 `;
