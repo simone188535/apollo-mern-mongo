@@ -40,12 +40,8 @@ const typeDefs = gql`
     addVinyl(
       userId: ID!, 
       title: String!, 
-      format: [String]!, 
-      label: [String]!, 
-      type: String!, 
-      genre: [String]!,
-      style: [String],
-      cover_image: String!
+      vinylId: Int,
+      cover_image: String
     ): Auth
   }
 `;

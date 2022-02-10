@@ -28,6 +28,7 @@
 }
 
 .spin {
+  user-select: none;
   animation-name: spin;
   animation-duration: 5000ms;
   animation-iteration-count: infinite;
