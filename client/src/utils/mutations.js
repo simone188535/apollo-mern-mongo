@@ -56,3 +56,18 @@ export const ADD_VINYL = gql`
     }
   }
 `;
+
+
+export const DELETE_VINYL = gql`
+    mutation removeVinyl ($userId:ID!, $vinylId:ID!){
+    removeVinyl(userId:$userId, vinylId:$vinylId){
+      user{
+        _id
+        vinyl {
+          id
+        }
+      }
+    }
+  }
+
+`

@@ -43,6 +43,7 @@ const typeDefs = gql`
       vinylId: Int,
       cover_image: String
     ): Auth
+    removeVinyl(userId: ID!, vinylId: ID!):Auth
   }
 `;
 
