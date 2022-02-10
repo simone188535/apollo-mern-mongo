@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/users',
+  process.env.MONGODB_URI || 'mongodb://localhost/vinylCollection',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
