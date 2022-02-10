@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { QUERY_USER, QUERY_ME} from '../utils/queries';
-import { DELETE_VINYL} from '../utils/mutations';
+import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { DELETE_VINYL } from '../utils/mutations';
 
 import './assets/css/profile.css'
 
@@ -14,11 +14,11 @@ const Profile = () => {
     variables: { id },
   });
 
- const submit = (userId, vinylId) => {
-   deleteVinyl({
-     variables: { userId, vinylId}
+  const submit = (userId, vinylId) => {
+    deleteVinyl({
+      variables: { userId, vinylId }
     });
- }
+  }
 
   const user = data?.me || data?.user || {};
   console.log(user)
@@ -73,7 +73,7 @@ const Profile = () => {
                   key={vinyl.id}>
                   <h2
                     className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
-                    <button onClick={() => submit(user._id, vinyl.id)}>X</button>
+                  <button onClick={() => submit(user._id, vinyl.id)}>Remove from Favorites</button>
                   <img
                     className="resultImage d-block mx-auto"
                     alt={vinyl.title}
