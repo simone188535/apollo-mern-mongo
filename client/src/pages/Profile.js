@@ -52,8 +52,11 @@ const Profile = () => {
     if (id) return null;
     return (
       <>
-        <h4>Username: {user.username}</h4>
-        <h4>Email: {user.email}</h4>
+        <h4 className="username cu-text-field mt-4 mb-2">Username: {user.username}</h4>
+        <h4 className="email cu-text-field mb-4">Email: {user.email}</h4>
+        <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
+        <br/>
+        <button type="button" className="btn btn-outline-danger d-block mx-auto">Delete User</button>
       </>
     );
   };
