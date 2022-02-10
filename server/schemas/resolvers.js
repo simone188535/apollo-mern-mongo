@@ -60,13 +60,13 @@ const resolvers = {
     },
     addVinyl: async (
       _,
-      { userId, title, format, label, type, genre, style, cover_image }
+      { userId, vinylId, title, format, label, type, genre, style, cover_image }
     ) => {
       const user = await User.findOneAndUpdate(
         { _id: userId },
         {
           $addToSet: {
-            vinyl: { title, format, label, type, genre, style, cover_image },
+            vinyl: { title, id: vinylId, format, label, type, genre, style, cover_image },
           },
         },
         { new: true }
@@ -97,14 +97,14 @@ const resolvers = {
       return { updatedUser };
     },
 
-    removeVinyl: async(_, {userId, vinylId}) => {
+    removeVinyl: async (_, { userId, vinylId }) => {
       const user = await User.findOneAndUpdate(
-        {_id: userId},
-        {$pull: {vinyl: {_id : vinylId}}},
-        {new: true}
+        { _id: userId },
+        { $pull: { vinyl: { _id: vinylId } } },
+        { new: true }
       );
       console.log(user);
-      return {user}
+      return { user }
     }
   },
 };
