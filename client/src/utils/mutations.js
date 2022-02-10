@@ -67,7 +67,7 @@ export const ADD_VINYL = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUser(
+   mutation updateUser(
     $id:ID!, 
     $email:String,
     $username:String, 
@@ -79,7 +79,6 @@ export const UPDATE_USER = gql`
       username:$username,
       password:$password
     ){
-      token
       user {
         username
         email
