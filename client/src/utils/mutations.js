@@ -52,6 +52,7 @@ export const ADD_VINYL = gql`
         username
         email
         vinyl {
+          id
           title
           format
           label
@@ -85,7 +86,7 @@ export const UPDATE_USER = gql`
         password
       }
     }
-  };
+  }
 `;
 
 export const DELETE_USER = gql`
@@ -112,5 +113,4 @@ export const DELETE_VINYL = gql`
       }
     }
   }
-
-`
+`;

@@ -17,6 +17,9 @@ const SearchResults = () => {
   const { loading: userLoading, data: userData } = useQuery(QUERY_ME);
   const me = userData?.me;
 
+  console.log(userData)
+  console.log(me)
+
   const userVinylIds = me?.vinyl.map((vinyl) => vinyl.id);
 
   console.log(userVinylIds)
