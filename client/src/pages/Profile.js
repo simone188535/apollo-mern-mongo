@@ -59,32 +59,41 @@ const Profile = () => {
   };
 
   return (
-    <div className="container-fluid profile-styles min-vh-100">
-      <div className="row">
-        <div className="card-profile border border-dark p-3 shadow-md mt-5 m-3 col-3 col-md-3 vw-25">
-          {renderCurrentUserInfo()}
+    <main className="container-fluid home ">
+      <section className="row">
+        <div className='col-3'>
+          <div className="card shadow-md mt-5 m-3 ">
+            {renderCurrentUserInfo()}
+          </div>
         </div>
-        <div className='card col vw-75 p-3 mt-5 m-3'>
-          <ul className="justify-content-center mb-0">
+        <div className='col-9'>
+          <div className="container-fluid min-vh-100">
+          <ul className="row justify-content-center mb-0">
             {user.vinyl.map((vinyl) => {
               return (
                 <li
-                  className="card border border-dark p-3 mt-5 m-3 col-md-3"
+                  className="card d-flex flex-colum border border-dark p-3 mt-5 m-3 col-md-3"
                   key={vinyl.id}>
                   <h2
                     className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
-                  <button onClick={() => submit(user._id, vinyl.id)}>Remove from Favorites</button>
+                  
                   <img
                     className="resultImage d-block mx-auto"
                     alt={vinyl.title}
                     src={vinyl.cover_image} />
+                    <br />
+                    <button 
+                    className='mt-auto'
+                    onClick={() => submit(user._id, vinyl.id)}
+                    >Remove from Favorites</button>
                 </li>
               )
             })}
           </ul>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
