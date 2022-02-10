@@ -36,7 +36,7 @@ const Upload = () => {
   };
 
   return (
-    <section className="upload-page container mt-5 min-vh-100">
+    <section className="upload-page auth container mt-5 min-vh-100">
       <div className="row">
         <h4 className="col">Upload</h4>
       </div>
@@ -222,7 +222,7 @@ const Upload = () => {
               className="text-danger mb-2"
             />
 
-            <button type="submit" className="btn text-light submit-btn mb-2">
+            <button type="submit" className="btn text-light submit-btn mt-3 mb-5">
               Submit
             </button>
             <FormikStatus

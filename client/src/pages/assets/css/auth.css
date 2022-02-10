@@ -1,5 +1,16 @@
 @import '../../../index.css';
 
-.signup-page .submit-btn, .login-page .submit-btn, .upload-page .submit-btn {
+.auth .submit-btn {
   background-color: var(--blue-grotto);
+}
+
+section.auth {
+  width: 60%;
+  max-width: 700px;
+}
+
+@media (max-width: 576px) {
+.auth {
+    width: 80%;
+  }
 }

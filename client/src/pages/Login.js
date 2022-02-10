@@ -34,7 +34,7 @@ const Login = () => {
 
 
   return (
-    <section className="login-page container mt-5 min-vh-100">
+    <section className="login-page auth container mt-5 min-vh-100">
       <div className="row">
         <h4 className="col">Login</h4>
       </div>
@@ -58,7 +58,7 @@ const Login = () => {
             <Field name="password" type="password" className="mb-2 form-control" />
             <ErrorMessage name="password" component="div" className="text-danger mb-3" />
 
-            <button type="submit" className="btn text-light submit-btn mb-2">Submit</button>
+            <button type="submit" className="btn text-light submit-btn mt-3">Submit</button>
             <FormikStatus err={successfulSubmission} successMessage="Login Successful!" />
           </Form>
         </Formik>
