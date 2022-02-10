@@ -65,6 +65,15 @@ const resolvers = {
 
       return { user };
     },
+    removeVinyl: async(_, {userId, vinylId}) => {
+      const user = await User.findOneAndUpdate(
+        {_id: userId},
+        {$pull: {vinyl: {_id : vinylId}}},
+        {new: true}
+      );
+      console.log(user);
+      return {user}
+    }
   }
 };
 

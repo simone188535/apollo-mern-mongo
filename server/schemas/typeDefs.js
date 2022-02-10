@@ -47,6 +47,7 @@ const typeDefs = gql`
       style: [String],
       cover_image: String!
     ): Auth
+    removeVinyl(userId: ID!, vinylId: ID!):Auth
   }
 `;
 

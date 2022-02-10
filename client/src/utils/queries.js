@@ -55,6 +55,7 @@ export const QUERY_ME = gql`
       username
       email
       vinyl {
+        id
         title
         cover_image
       }
