@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_VINYLS, QUERY_ME } from "../utils/queries";
 import { ADD_VINYL } from "../utils/mutations";
 import searchResultsImg from './assets/images/logologin.png'
@@ -12,25 +12,36 @@ const SearchResults = () => {
 
   const { loading, data } = useQuery(QUERY_VINYLS, canSearch ? { variables } : {});
   const vinyls = data?.vinyls || []
-  const [getUserId, { called, loading: userLoading, data: userData }] = useLazyQuery(QUERY_ME);
+
+
+  const { loading: userLoading, data: userData } = useQuery(QUERY_ME);
+  const me = userData?.me;
+
+  console.log(userData)
+  console.log(me)
+
+  const userVinylIds = me?.vinyl.map((vinyl) => vinyl.id);
+
+  console.log(userVinylIds)
+
   const [addVinyl, { data: vinylData, loading: vinylLoading, error }] = useMutation(ADD_VINYL);
 
-  const addToFav = ({ id, title, cover_image }) => {
-    getUserId()
+  const addToFav = async (e, { id, title, cover_image }) => {
 
-    if (called && !userLoading) {
-      const userId = userData.me._id;
-      addVinyl({
+    if (!userLoading) {
+      e.target.disabled = true
+      e.target.textContent = 'Adding to Favorites'
+      await addVinyl({
         variables: {
-          "userId": userId,
+          "userId": me._id,
           "vinylId": parseInt(id),
           "title": title,
           "cover_image": cover_image
         }
       })
+      e.target.disabled = false
+      e.target.textContent = 'Add to Favorites'
     };
-
-    if (vinylData) console.log('success', vinylData)
   };
 
 
@@ -57,7 +68,10 @@ const SearchResults = () => {
                     src={vinyl.cover_image}
                   />
                 </Link>
-                <button onClick={() => addToFav(vinyl)}>Add to Favorites</button>
+                {(userVinylIds.includes(vinyl.id)) ? 'here' : 'not here'}
+                <button
+                  onClick={(e) => addToFav(e, vinyl)}>Add to Favorites
+                </button>
               </li>
             )
           })}

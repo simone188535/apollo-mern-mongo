@@ -13,7 +13,7 @@ export const QUERY_VINYL = gql`
       cover_image
     }
   }
-`;
+`
 
 export const QUERY_VINYLS = gql`
   query vinyls($q:String, $artist:String, $song:String, $genre:String) {
@@ -23,7 +23,7 @@ export const QUERY_VINYLS = gql`
       cover_image
     }
   }
-`;
+`
 
 export const QUERY_USER = gql`
   query user($id: ID!) {
@@ -35,7 +35,7 @@ export const QUERY_USER = gql`
       vinyl
     }
   }
-`;
+`
 
 export const QUERY_USERS = gql`
   query users {
@@ -46,7 +46,7 @@ export const QUERY_USERS = gql`
       password
     }
   }
-`;
+`
 
 export const QUERY_ME = gql`
   query me {
@@ -61,4 +61,4 @@ export const QUERY_ME = gql`
       }
     }
   }
-`;
+`
