@@ -70,7 +70,8 @@ const resolvers = {
           },
         },
         { new: true }
-      );
+      )
+
 
       return { user };
     },
