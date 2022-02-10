@@ -39,10 +39,17 @@ const typeDefs = gql`
     login(email:String!, password:String!): Auth
     addVinyl(
       userId: ID!, 
-      title: String!, 
       vinylId: Int,
-      cover_image: String
+      title: String!, 
+      format: [String], 
+      label: [String], 
+      type: String, 
+      genre: [String],
+      style: [String],
+      cover_image: String!
     ): Auth
+    deleteUser(id: ID!): Auth
+    updateUser(id: ID!, email:String, username:String, password:String): Auth
     removeVinyl(userId: ID!, vinylId: ID!):Auth
   }
 `;

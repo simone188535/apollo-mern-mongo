@@ -74,7 +74,7 @@ const Upload = () => {
             />
 
             <label htmlFor="format" className="mb-2">
-              <strong>Format: (Select one or multiple)</strong>
+              <strong>Vinyl Format: (Select one or multiple)</strong>
             </label>
             <Field
               as="select"
