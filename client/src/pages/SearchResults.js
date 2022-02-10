@@ -2,7 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_VINYLS, QUERY_ME } from "../utils/queries";
 import { ADD_VINYL } from "../utils/mutations";
-import searchResultsImg from './assets/images/logologin.png'
+import searchResultsImg from './assets/images/logologin.png';
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SearchResults = () => {
   const location = useLocation();
@@ -52,26 +54,31 @@ const SearchResults = () => {
   return (
     <>
       <main className="container-fluid home min-vh-100">
-        <img alt='search Results' src={searchResultsImg} className='justify-item-center'></img>
+        <img alt='search Results' src={searchResultsImg} className='col-5 img-fluid mx-auto d-block '></img>
         <ul className="row justify-content-center mb-0">
           {vinyls.map((vinyl) => {
             return (
               <li
-                className="card border border-dark p-3 mt-5 m-3 col-md-3"
+                className="card border border-dark p-3 mt-5 m-3 col-md-3 justify-content-center text-center"
                 key={vinyl.id}>
                 <Link to={`/vinyl/${encodeURIComponent(vinyl.title)}`}>
                   <h2
                     className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
-                  <img
-                    className="resultImage d-block mx-auto"
-                    alt={vinyl.title}
-                    src={vinyl.cover_image}
-                  />
+                  <div>
+                    <img
+                      className="resultImage d-block mx-auto img-fluid"
+                      alt={vinyl.title}
+                      src={vinyl.cover_image}
+                    />
+                  </div>
                 </Link>
                 {(userVinylIds.includes(vinyl.id)) ? 'here' : 'not here'}
-                <button
-                  onClick={(e) => addToFav(e, vinyl)}>Add to Favorites
-                </button>
+                <div>
+                  <button className="btn btn-rounded btn-white w-10 "
+
+                    onClick={(e) => addToFav(e, vinyl)}><FontAwesomeIcon icon={faHeart} />
+                  </button>
+                </div>
               </li>
             )
           })}
