@@ -4,8 +4,9 @@
   background-color: var(--blue-grotto);
 }
 
-.auth {
+section.auth {
   width: 60%;
+  max-width: 700px;
 }
 
 @media (max-width: 576px) {
