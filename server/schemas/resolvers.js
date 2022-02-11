@@ -102,8 +102,7 @@ const resolvers = {
         { $pull: { vinyl: { _id: vinylId } } },
         { new: true }
       );
-      console.log(user);
-      return { user }
+      return { user };
     }
   },
 };

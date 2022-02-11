@@ -21,8 +21,7 @@ const Profile = () => {
     });
   }
 
-  const user = data?.me || data?.user || {};
-  console.log(user)
+  const user = data?.me || data?.user || {};  
 
   if (error) console.log(error);
 
@@ -55,7 +54,7 @@ const Profile = () => {
       <>
         <h4 className="username cu-text-field mt-4 mb-2">Username: {user.username}</h4>
         <h4 className="email cu-text-field mb-4">Email: {user.email}</h4>
-        <Link to="/edit">
+        <Link to="/edit" className="text-decoration-none">
           <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
         </Link>
         <br/>
