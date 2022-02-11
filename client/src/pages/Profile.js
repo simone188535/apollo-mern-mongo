@@ -74,11 +74,8 @@ const Profile = () => {
             <h4 className="fw-bold cu-text-field mb-4">Email: {user.email}</h4>
             <h4 className="fw-bold cu-text-field mb-4">Favorites: {user.vinyl.length}</h4>
 
-            <div className='col d-inline-flex'>
-              <Link to="/edit" className="text-decoration-none">
-                <button type="button" className="mb-3 col btn btn-outline-success ">Edit Profile</button>
-              </Link>
-              <br />
+            <div className='col d-inline-flex align-items-start'>
+              <Link to="/edit" className="btn btn-outline-success me-3">Edit Profile</Link>
               <button type="button" className="mb-3 col btn btn-outline-danger " onClick={deleteCurrentUserOnClick}>Delete User</button>
             </div>
 
@@ -91,18 +88,18 @@ const Profile = () => {
   return (
     <main className="container-fluid home ">
       <section className="row">
-        <div className='col-xl-3 col-sm-12'>
+        <div className='col-xl-5 col-sm-12'>
           <div className="shadow-md mt-5 m-3 ">
             {renderCurrentUserInfo()}
           </div>
         </div>
-        <div className='col-md-12 col-xl-9'>
+        <div className='col-md-12 col-xl-7'>
           <div className="container-fluid min-vh-100">
             <ul className="row justify-content-center mb-0">
               {user.vinyl.map((vinyl) => {
                 return (
                   <li
-                    className="card d-flex flex-column border border-dark p-3 mt-5 m-3 col-md-4 justify-content-center text-center"
+                    className="card d-flex flex-column border border-dark p-3 mt-5 m-3 col-md-6 justify-content-center text-center"
                     key={vinyl.id}>
                     <h2
                       className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
