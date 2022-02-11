@@ -39,6 +39,10 @@
   /* transform: rotate(.03turn);  */
 }
 
+.spin.nav-logo {
+  height: 80px;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
