@@ -11,7 +11,7 @@ import "./assets/css/auth.css";
 
 const Edit = () => {
   const id = Auth.getProfile()?.data?._id;
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [updateUser, { error }] = useMutation(UPDATE_USER);
   const { data } = useQuery(QUERY_ME, {
     variables: { id },
   });
@@ -71,8 +71,8 @@ const Edit = () => {
             <Field name="password" type="password" className="mb-2 form-control" placeholder="Please enter a new password"/>
             <ErrorMessage name="password" component="div" className="text-danger mb-3" />
 
-            <button type="submit" className="btn text-light submit-btn mt-3" disabled={!isValid}>Submit</button>
-            <FormikStatus err={successfulSubmission} successMessage="Edit Successful!" />
+            <button type="submit" className="btn text-light submit-btn my-3" disabled={!isValid}>Submit</button>
+            <FormikStatus err={successfulSubmission} successMessage="Edit Successful!" errMsg={error?.graphQLErrors?.[0]?.message}/>
           </Form>
           )}
         </Formik>

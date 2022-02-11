@@ -1,12 +1,12 @@
 import { useFormikContext } from "formik";
 
-const FormikStatus = ({ err, successMessage }) => {
+const FormikStatus = ({ err, successMessage, errMsg }) => {
     const { submitCount, isSubmitting, isValid } = useFormikContext();
     if (submitCount > 0 && !isSubmitting && isValid) {
       if (err) {
         return (
           <div className="text-danger text-center">
-            Something went wrong. Please try again later.
+             {errMsg || 'Something went wrong. Please try again later.'}
           </div>
         );
       }
