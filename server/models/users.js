@@ -31,6 +31,10 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.virtual('vinylCount').get(function () {
+  return this.vinyl.length;
+});
+
 userSchema.methods.passwordCompare = async function (password) {
   return bcrypt.compare(password, this.password);
 };

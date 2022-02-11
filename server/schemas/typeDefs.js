@@ -22,6 +22,7 @@ const typeDefs = gql`
     email: String
     password: String
     vinyl: [Vinyl]
+    vinylCount: Int
   }
   type Auth {
     token: ID!
@@ -47,10 +48,10 @@ const typeDefs = gql`
       genre: [String],
       style: [String],
       cover_image: String!
-    ): Auth
+    ): User
     deleteUser(id: ID!): Auth
     updateUser(id: ID!, email: String, username: String, password: String): Auth
-    removeVinyl(userId: ID!, vinylId: ID!):Auth
+    removeVinyl(userId: ID!, vinylId: ID!):User
   }
 `;
 

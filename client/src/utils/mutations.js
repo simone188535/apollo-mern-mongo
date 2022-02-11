@@ -48,7 +48,7 @@ export const ADD_VINYL = gql`
       style: $style
       cover_image: $cover_image
     ) {
-      user {
+        _id
         username
         email
         vinyl {
@@ -61,13 +61,12 @@ export const ADD_VINYL = gql`
           style
           cover_image
         }
-      }
     }
   }
 `;
 
 export const UPDATE_USER = gql`
-   mutation updateUser(
+  mutation updateUser(
     $id:ID!, 
     $email:String,
     $username:String, 
@@ -103,12 +102,10 @@ export const DELETE_USER = gql`
 export const DELETE_VINYL = gql`
     mutation removeVinyl ($userId:ID!, $vinylId:ID!){
     removeVinyl(userId:$userId, vinylId:$vinylId){
-      user{
         _id
         vinyl {
           id
         }
-      }
     }
   }
 `;
