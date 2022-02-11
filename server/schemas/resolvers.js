@@ -36,8 +36,22 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (_, args) => {
-      const user = await User.create(args);
+    addUser: async (_, { email, username, password }) => {
+
+      const doesEmailExist = await User.findOne({ email });
+      const doesUsernameExist = await User.findOne({ username });
+      
+      if (doesEmailExist) {
+        throw new AuthenticationError("This email already has an account!");
+      }
+
+      if (doesUsernameExist) {
+        throw new AuthenticationError("This username is taken!");
+      }
+
+      const user = await User.create({
+        email, username, password
+      });
       const token = signToken(user);
       return { token, user };
     },
@@ -45,13 +59,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("No user found with this email address");
+        throw new AuthenticationError("No user found with this email address!");
       }
 
       const correctPw = await user.passwordCompare(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError("Incorrect credentials!");
       }
 
       const token = signToken(user);

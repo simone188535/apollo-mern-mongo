@@ -9,7 +9,7 @@ import "./assets/css/auth.css";
 import "./assets/css/login.css";
 
 const Login = () => {
-  const [login] = useMutation(LOGIN_USER);
+  const [login, { error }] = useMutation(LOGIN_USER);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
@@ -74,7 +74,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="btn text-light submit-btn mt-3"
+                className="btn text-light submit-btn my-3"
                 disabled={!isValid}
               >
                 Submit
@@ -82,6 +82,7 @@ const Login = () => {
               <FormikStatus
                 err={successfulSubmission}
                 successMessage="Login Successful!"
+                errMsg={error?.graphQLErrors?.[0]?.message}
               />
             </Form>
           )}

@@ -9,7 +9,7 @@ import "./assets/css/auth.css";
 import "./assets/css/signup.css";
 
 const Signup = () => {
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
@@ -91,7 +91,7 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="btn text-light submit-btn mt-3"
+                className="btn text-light submit-btn my-3"
                 disabled={!isValid}
               >
                 Submit
@@ -99,6 +99,7 @@ const Signup = () => {
               <FormikStatus
                 err={successfulSubmission}
                 successMessage="Sign Up Successful!"
+                errMsg={error?.graphQLErrors?.[0]?.message}
               />
             </Form>
           )}

@@ -7,7 +7,7 @@ import FormikStatus from "../components/Common/FormikStatus";
 import Auth from "../utils/auth";
 
 const Upload = () => {
-  const [addVinyl] = useMutation(ADD_VINYL);
+  const [addVinyl, { error }] = useMutation(ADD_VINYL);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
@@ -227,7 +227,7 @@ const Upload = () => {
 
               <button
                 type="submit"
-                className="btn text-light submit-btn mt-3 mb-5"
+                className="btn text-light submit-btn my-3"
                 disabled={!isValid}
               >
                 Submit
@@ -235,6 +235,7 @@ const Upload = () => {
               <FormikStatus
                 err={successfulSubmission}
                 successMessage="Upload Successful!"
+                errMsg={error?.graphQLErrors?.[0]?.message}
               />
             </Form>
           )}
