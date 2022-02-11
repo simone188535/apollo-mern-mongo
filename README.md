@@ -1,60 +1,66 @@
 # **Vinyl Collection** (Apollo-MERN-Mongo)
 
-## Table of Contents
+## **Table of Contents**
 - [Description](#description)   
 - [Links](#links)  
-- [Visuals](#visuals)  
+- [Visuals](#visuals) 
+- [License](#license) 
 - [Questions](#questions)
 
 ***
 
-## Description
+## **Description**
 
 This is a website that allows the user to search and select vinyl records of their choosing by Artist, Song or Genre - also allowing them to add individual vinyls to a collection of favorites and display them on their personal profile page.
 
 ***
 
-## Links
-[Link to Vinyl Collection](*insert Heroku deployment link here*)
+## **Links**
+[Link to Vinyl Collection](https://guarded-mesa-92064.herokuapp.com/)
 
 [Link to GitHub](https://github.com/simone188535/apollo-mern-mongo)  
 
 ***
 
-## Visuals
+## **Visuals**
 ![vinyl-collection]( "vinyl-collection gif")
 
 ***
 
-## Questions
+## **License**
+![image](https://img.shields.io/badge/license-MIT-turquoise)
+
+***
+
+## **Questions**
 If you have any questions at all, please email us or find us on GitHub: 
 
-**WESLEY ROGERS:** 
+**`WESLEY ROGERS`** 
 
-- `Email`: wprogers86@gmail.com
+- Email: wprogers86@gmail.com
 
-- `GitHub`: https://github.com/wparker05
+- GitHub: https://github.com/wparker05
 
-**SIMONE ANTHONY:** 
+**`SIMONE ANTHONY`** 
 
-- `Email`: simone.anthony1@yahoo.com
+- Email: simone.anthony1@yahoo.com
 
-- `GitHub`: https://github.com/simone188535
+- GitHub: https://github.com/simone188535
 
-**MATT MOORE:** 
+**`MATT MOORE`** 
 
-- `Email`: mattholtmoore@gmail.com  
+- Email: mattholtmoore@gmail.com  
 
-- `GitHub`: https://www.github.com/mattholtmoore
+- GitHub: https://www.github.com/mattholtmoore
 
-**AUSTIN ENGLE:** 
+**`AUSTIN ENGLE`** 
 
-- `Email`: engleau@gmail.com
+- Email: engleau@gmail.com
 
-- `GitHub`: https://github.com/FatherWolf
+- GitHub: https://github.com/FatherWolf
 
-**JESSE MONKS:** 
+**`JESSE MONKS`** 
 
-- `Email`: monksjesse@gmail.com
+- Email: monksjesse@gmail.com
 
-- `GitHub`: https://github.com/heatedtowel
+- GitHub: https://github.com/heatedtowel
