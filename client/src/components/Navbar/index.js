@@ -33,7 +33,7 @@ function Navbar() {
     <>
       <li>
         <Link to="/upload" className="dropdown-item">
-          <button className="col-12 btn btn-secondary border border-secondary text-white" onClick={logout}>Upload</button>
+          <button className="col-12 btn btn-secondary border border-secondary text-white">Upload</button>
         </Link>
       </li>
       <li>
