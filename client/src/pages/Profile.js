@@ -23,7 +23,7 @@ const Profile = () => {
     });
   }
 
-  const user = data?.me || data?.user || {};  
+  const user = data?.me || data?.user || {};
 
   if (error) console.log(error);
 
@@ -50,11 +50,11 @@ const Profile = () => {
 
   const deleteCurrentUserOnClick = async () => {
     try {
-    await deleteUser({
-      variables: { id: profileUsersId }
-    });
-    Auth.logout();
-    window.location.assign('/');
+      await deleteUser({
+        variables: { id: profileUsersId }
+      });
+      Auth.logout();
+      window.location.assign('/');
     } catch (err) {
       console.log(err);
     }
@@ -67,10 +67,11 @@ const Profile = () => {
       <>
         <h4 className="username cu-text-field mt-4 mb-2">Username: {user.username}</h4>
         <h4 className="email cu-text-field mb-4">Email: {user.email}</h4>
+        <h4 className="favorites cu-text-field mb-4">Favorites: {user.vinyl.length}</h4>
         <Link to="/edit" className="text-decoration-none">
           <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
         </Link>
-        <br/>
+        <br />
         <button type="button" className="btn btn-outline-danger d-block mx-auto" onClick={deleteCurrentUserOnClick}>Delete User</button>
       </>
     );
@@ -79,35 +80,38 @@ const Profile = () => {
   return (
     <main className="container-fluid home ">
       <section className="row">
-        <div className='col-3'>
+        <div className='col-xl-3 col-sm-12'>
           <div className="card shadow-md mt-5 m-3 ">
             {renderCurrentUserInfo()}
           </div>
         </div>
-        <div className='col-9'>
+        <div className='col-md-12 col-xl-9'>
           <div className="container-fluid min-vh-100">
-          <ul className="row justify-content-center mb-0">
-            {user.vinyl.map((vinyl) => {
-              return (
-                <li
-                  className="card d-flex flex-colum border border-dark p-3 mt-5 m-3 col-md-3"
-                  key={vinyl.id}>
-                  <h2
-                    className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
-                  
-                  <img
-                    className="resultImage d-block mx-auto"
-                    alt={vinyl.title}
-                    src={vinyl.cover_image} />
+            <ul className="row justify-content-center mb-0">
+              {user.vinyl.map((vinyl) => {
+                return (
+                  <li
+                    className="card d-flex flex-column border border-dark p-3 mt-5 m-3 col-md-4 justify-content-center text-center"
+                    key={vinyl.id}>
+                    <h2
+                      className="text-center fs-3 fw-bold text-muted">{vinyl.title}</h2>
+                    <div>
+                      <img
+                        className="resultImage d-block mx-auto img-fluid"
+                        alt={vinyl.title}
+                        src={vinyl.cover_image} />
+                    </div>
                     <br />
-                    <button 
-                    className='mt-auto'
-                    onClick={() => submit(user._id, vinyl.id)}
-                    >Remove from Favorites</button>
-                </li>
-              )
-            })}
-          </ul>
+                    <div>
+                      <button
+                        className="btn btn-rounded btn-light btn-white w-10 border border-info"
+                        onClick={() => submit(user._id, vinyl.id)}
+                      >Remove from Favorites</button>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </div>
       </section>

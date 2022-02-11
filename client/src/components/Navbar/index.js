@@ -20,36 +20,43 @@ function Navbar() {
     e.preventDefault();
 
     if (searchTerm && type) {
-      history.push(`/results?q=${searchTerm}&${type}`)
+      history.push(`/results?q=${searchTerm}&${type.toLowerCase()}`)
     }
   };
+
+  const searchType = (type) => {
+    const result = type ? type : "Search by";
+    return result;
+  }
 
   const dropDownItem = Auth.loggedIn() ? (
     <>
       <li>
         <Link to="/upload" className="dropdown-item">
-          Upload
+          <button className="col-12 btn btn-secondary border border-secondary text-white" onClick={logout}>Upload</button>
         </Link>
       </li>
       <li>
         <Link to="/me" className="dropdown-item">
-          {Auth.getProfile().data.username}'s profile
+          <button className="col-12 btn btn-secondary border border-secondary text-white">{Auth.getProfile().data.username}'s profile</button>
         </Link>
       </li>
       <li>
-        <button className="btn btn-primary" onClick={logout}>Logout</button>
+        <div className="dropdown-item">
+          <button className="col-12 btn btn-secondary border border-secondary text-white" onClick={logout}>Logout</button>
+        </div>
       </li>
     </>
   ) : (
     <>
       <li>
         <Link to="/login" className="dropdown-item">
-          Login
+          <button className="col-12 btn btn-secondary border border-secondary text-white">Login</button>
         </Link>
       </li>
       <li>
         <Link to="/signup" className="dropdown-item">
-          Sign Up
+          <button className="col-12 btn btn-secondary border border-secondary text-white">Sign Up</button>
         </Link>
       </li>
     </>
@@ -84,49 +91,49 @@ function Navbar() {
             onChange={(event) => setSearchTerm(event.target.value)}
           />
           <div className="btn-group border-left-0">
-        <button
-          className="btn btn-outline-secondary dropdown-toggle global-search-dropdown me-2"
-          type="button"
-          id="search-dropdown"
-          data-bs-toggle="dropdown"
-          data-bs-auto-close="true"
-          aria-expanded="false"
-        >
-          Search by
-        </button>
-        <ul
-          className="dropdown-menu account-dropdown"
-          aria-labelledby="search-dropdown"
-        >
-          <li>
-            <Link
-              className="dropdown-item"
-              to="#"
-              onClick={() => setType("artist")}
+            <button
+              className="btn btn-outline-secondary dropdown-toggle global-search-dropdown me-2"
+              type="button"
+              id="search-dropdown"
+              data-bs-toggle="dropdown"
+              data-bs-auto-close="true"
+              aria-expanded="false"
             >
-              Artist
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="dropdown-item"
-              to="#"
-              onClick={() => setType("song")}
+              {searchType(type)}
+            </button>
+            <ul
+              className="dropdown-menu account-dropdown"
+              aria-labelledby="search-dropdown"
             >
-              Song
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="dropdown-item"
-              to="#"
-              onClick={() => setType("genre")}
-            >
-              Genre
-            </Link>
-          </li>
-        </ul>
-      </div>
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="#"
+                  onClick={() => setType("Artist")}
+                >
+                  Artist
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="#"
+                  onClick={() => setType("Song")}
+                >
+                  Song
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="#"
+                  onClick={() => setType("Genre")}
+                >
+                  Genre
+                </Link>
+              </li>
+            </ul>
+          </div>
           <button className="btn btn-secondary" type="submit">
             Search
           </button>
