@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Upload from './pages/Upload';
+import Edit from './pages/Edit';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SearchResults from './pages/SearchResults';
@@ -68,6 +69,9 @@ function App() {
               </Route>
               <Route exact path="/vinyl/:title">
                 <Vinyl />
+              </Route>
+              <Route exact path="/edit">
+                <Edit />
               </Route>
             </Switch>
           </div>

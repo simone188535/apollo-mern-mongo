@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Redirect, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
@@ -54,7 +55,9 @@ const Profile = () => {
       <>
         <h4 className="username cu-text-field mt-4 mb-2">Username: {user.username}</h4>
         <h4 className="email cu-text-field mb-4">Email: {user.email}</h4>
-        <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
+        <Link to="/edit">
+          <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
+        </Link>
         <br/>
         <button type="button" className="btn btn-outline-danger d-block mx-auto">Delete User</button>
       </>
