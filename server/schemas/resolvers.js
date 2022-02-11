@@ -78,6 +78,7 @@ const resolvers = {
 
     deleteUser: async (_, { id }) => {
       const user = await User.findOneAndDelete({ _id: id });
+      console.log(user);
       return { user };
     },
 
@@ -102,8 +103,7 @@ const resolvers = {
         { $pull: { vinyl: { _id: vinylId } } },
         { new: true }
       );
-      console.log(user);
-      return { user }
+      return { user };
     }
   },
 };

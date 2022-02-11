@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Redirect, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
-import { DELETE_VINYL } from '../utils/mutations';
+import { DELETE_VINYL, DELETE_USER } from '../utils/mutations';
 
 import './assets/css/profile.css'
 
 const Profile = () => {
   const { id } = useParams();
+  const profileUsersId = Auth.getProfile().data._id;
   const [deleteVinyl] = useMutation(DELETE_VINYL);
+  const [deleteUser] = useMutation(DELETE_USER);
   const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
     variables: { id },
   });
@@ -20,12 +23,11 @@ const Profile = () => {
     });
   }
 
-  const user = data?.me || data?.user || {};
-  console.log(user)
+  const user = data?.me || data?.user || {};  
 
   if (error) console.log(error);
 
-  if (Auth.loggedIn() && Auth.getProfile().data._id === id) {
+  if (Auth.loggedIn() && profileUsersId === id) {
     return <Redirect to="/me" />;
   }
 
@@ -46,14 +48,30 @@ const Profile = () => {
     );
   }
 
+  const deleteCurrentUserOnClick = async () => {
+    try {
+    await deleteUser({
+      variables: { id: profileUsersId }
+    });
+    Auth.logout();
+    window.location.assign('/');
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
 
   const renderCurrentUserInfo = () => {
     if (id) return null;
     return (
       <>
-        <h4>Username: {user.username}</h4>
-        <h4>Email: {user.email}</h4>
+        <h4 className="username cu-text-field mt-4 mb-2">Username: {user.username}</h4>
+        <h4 className="email cu-text-field mb-4">Email: {user.email}</h4>
+        <Link to="/edit" className="text-decoration-none">
+          <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
+        </Link>
+        <br/>
+        <button type="button" className="btn btn-outline-danger d-block mx-auto" onClick={deleteCurrentUserOnClick}>Delete User</button>
       </>
     );
   };

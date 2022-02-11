@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import "./assets/css/auth.css";
 import "./assets/css/signup.css";
 
-
 const Signup = () => {
   const [addUser] = useMutation(ADD_USER);
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
@@ -50,22 +49,59 @@ const Signup = () => {
           })}
           onSubmit={handleFormSubmit}
         >
-          <Form className="col d-flex flex-column">
-            <label htmlFor="username" className="mb-2">Username</label>
-            <Field name="username" type="text" className="mb-2 form-control" />
-            <ErrorMessage name="username" component="div" className="text-danger mb-2" />
+          {({ isValid }) => (
+            <Form className="col d-flex flex-column">
+              <label htmlFor="username" className="mb-2">
+                Username
+              </label>
+              <Field
+                name="username"
+                type="text"
+                className="mb-2 form-control"
+              />
+              <ErrorMessage
+                name="username"
+                component="div"
+                className="text-danger mb-2"
+              />
 
-            <label htmlFor="email" className="mb-2">Email Address</label>
-            <Field name="email" type="email" className="mb-2 form-control" />
-            <ErrorMessage name="email" component="div" className="text-danger mb-2" />
+              <label htmlFor="email" className="mb-2">
+                Email Address
+              </label>
+              <Field name="email" type="email" className="mb-2 form-control" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-danger mb-2"
+              />
 
-            <label htmlFor="password" className="mb-2">Password</label>
-            <Field name="password" type="password" className="mb-2 form-control" />
-            <ErrorMessage name="password" component="div" className="text-danger mb-3" />
+              <label htmlFor="password" className="mb-2">
+                Password
+              </label>
+              <Field
+                name="password"
+                type="password"
+                className="mb-2 form-control"
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="text-danger mb-3"
+              />
 
-            <button type="submit" className="btn text-light submit-btn mt-3">Submit</button>
-            <FormikStatus err={successfulSubmission} successMessage="Sign Up Successful!" />
-          </Form>
+              <button
+                type="submit"
+                className="btn text-light submit-btn mt-3"
+                disabled={!isValid}
+              >
+                Submit
+              </button>
+              <FormikStatus
+                err={successfulSubmission}
+                successMessage="Sign Up Successful!"
+              />
+            </Form>
+          )}
         </Formik>
       </div>
     </section>
