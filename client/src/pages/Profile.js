@@ -4,13 +4,15 @@ import { Redirect, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
-import { DELETE_VINYL } from '../utils/mutations';
+import { DELETE_VINYL, DELETE_USER } from '../utils/mutations';
 
 import './assets/css/profile.css'
 
 const Profile = () => {
   const { id } = useParams();
+  const profileUsersId = Auth.getProfile().data._id;
   const [deleteVinyl] = useMutation(DELETE_VINYL);
+  const [deleteUser] = useMutation(DELETE_USER);
   const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
     variables: { id },
   });
@@ -25,7 +27,7 @@ const Profile = () => {
 
   if (error) console.log(error);
 
-  if (Auth.loggedIn() && Auth.getProfile().data._id === id) {
+  if (Auth.loggedIn() && profileUsersId === id) {
     return <Redirect to="/me" />;
   }
 
@@ -46,6 +48,17 @@ const Profile = () => {
     );
   }
 
+  const deleteCurrentUserOnClick = async () => {
+    try {
+    await deleteUser({
+      variables: { id: profileUsersId }
+    });
+    Auth.logout();
+    window.location.assign('/');
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
 
   const renderCurrentUserInfo = () => {
@@ -58,7 +71,7 @@ const Profile = () => {
           <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
         </Link>
         <br/>
-        <button type="button" className="btn btn-outline-danger d-block mx-auto">Delete User</button>
+        <button type="button" className="btn btn-outline-danger d-block mx-auto" onClick={deleteCurrentUserOnClick}>Delete User</button>
       </>
     );
   };

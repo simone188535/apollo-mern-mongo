@@ -78,6 +78,7 @@ const resolvers = {
 
     deleteUser: async (_, { id }) => {
       const user = await User.findOneAndDelete({ _id: id });
+      console.log(user);
       return { user };
     },
 
