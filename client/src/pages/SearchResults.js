@@ -49,7 +49,7 @@ const SearchResults = () => {
 
 
   if (loading) {
-    return <h1>loading...</h1>
+    return <h1 className="container-fluid min-vh-100 text-center mt-5">loading...</h1>
   };
   return (
     <>
@@ -72,7 +72,7 @@ const SearchResults = () => {
                     />
                   </div>
                 </Link>
-                {(userVinylIds.includes(vinyl.id)) ? 'here' : 'not here'}
+                {(userVinylIds?.includes(vinyl.id)) ? 'here' : 'not here'}
                 <div>
                   <button className="btn btn-rounded btn-white w-10 "
 
