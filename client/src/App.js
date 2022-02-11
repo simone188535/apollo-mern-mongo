@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -39,11 +39,13 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [easterEgg, setEasterEgg] = useState(false)
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <Header />
+          <Header setEasterEgg={setEasterEgg} />
           <div>
             <Switch>
               <Route exact path="/">
@@ -65,7 +67,8 @@ function App() {
                 <Upload />
               </Route>
               <Route exact path="/results">
-                <SearchResults />
+
+                <SearchResults easterEgg={easterEgg} setEasterEgg={setEasterEgg} />
               </Route>
               <Route exact path="/vinyl/:title">
                 <Vinyl />

@@ -68,14 +68,22 @@ const Profile = () => {
     if (id) return null;
     return (
       <>
-        <h4 className="username cu-text-field mt-4 mb-2">Username: {user.username}</h4>
-        <h4 className="email cu-text-field mb-4">Email: {user.email}</h4>
-        <h4 className="favorites cu-text-field mb-4">Favorites: {user.vinyl.length}</h4>
-        <Link to="/edit" className="text-decoration-none">
-          <button type="button" className="btn btn-outline-success d-block mx-auto">Edit Profile</button>
-        </Link>
-        <br />
-        <button type="button" className="btn btn-outline-danger d-block mx-auto" onClick={deleteCurrentUserOnClick}>Delete User</button>
+        <div className='container bg_image card-profile'>
+          <div className='text-center'>
+            <h4 className="fw-bold cu-text-field mt-4 mb-2">Username: {user.username}</h4>
+            <h4 className="fw-bold cu-text-field mb-4">Email: {user.email}</h4>
+            <h4 className="fw-bold cu-text-field mb-4">Favorites: {user.vinyl.length}</h4>
+
+            <div className='col d-inline-flex'>
+              <Link to="/edit" className="text-decoration-none">
+                <button type="button" className="mb-3 col btn btn-outline-success ">Edit Profile</button>
+              </Link>
+              <br />
+              <button type="button" className="mb-3 col btn btn-outline-danger " onClick={deleteCurrentUserOnClick}>Delete User</button>
+            </div>
+
+          </div>
+        </div>
       </>
     );
   };
@@ -84,7 +92,7 @@ const Profile = () => {
     <main className="container-fluid home ">
       <section className="row">
         <div className='col-xl-3 col-sm-12'>
-          <div className="card shadow-md mt-5 m-3 ">
+          <div className="shadow-md mt-5 m-3 ">
             {renderCurrentUserInfo()}
           </div>
         </div>
