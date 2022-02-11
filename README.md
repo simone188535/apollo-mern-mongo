@@ -23,7 +23,7 @@ This is a website that allows the user to search and select vinyl records of the
 ***
 
 ## **Visuals**
-![vinyl-collection]( "vinyl-collection gif")
+![vinyl-collection](assets/images/vinyl-collection.png "vinyl-collection gif")
 
 ***
 
