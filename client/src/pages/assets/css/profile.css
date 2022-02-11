@@ -1,14 +1,21 @@
 .profile-styles {
-  background: #D4F1F4;
+  background: #d4f1f4;
 }
 
 .card-profile {
   border-radius: 5px;
   background: #fff;
-  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.24);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.24);
   padding: 14px 80px 18px 36px;
+  font-family: "roboto", sans-serif;
 }
 
 .profile-styles .email {
   overflow-wrap: normal;
+}
+.bg_image {
+  background-image: url("../images/userinfo.png");
+  background-position: center center;
+  background-size: cover;
+  height: 300px;
 }

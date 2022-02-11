@@ -5,7 +5,7 @@ import { QUERY_VINYLS, QUERY_ME } from "../utils/queries";
 import { ADD_VINYL } from "../utils/mutations";
 import searchResultsImg from './assets/images/logologin-test.png';
 
-const SearchResults = () => {
+const SearchResults = ({ easterEgg, setEasterEgg }) => {
   const [loggedIn, setLoggedIn] = useState(false)
 
 
@@ -67,7 +67,7 @@ const SearchResults = () => {
           {vinyls.map((vinyl) => {
             return (
               <li
-                className="card border border-dark p-3 mt-4 m-3 col-xl-3 col-lg-4 col-sm-6 justify-content-center text-center"
+                className={easterEgg ? "spin card border border-dark p-3 mt-4 m-3 col-xl-3 col-lg-4 col-sm-6 justify-content-center text-center" : "card border border-dark p-3 mt-4 m-3 col-xl-3 col-lg-4 col-sm-6 justify-content-center text-center"}
                 key={vinyl.id}>
                 <Link to={`/vinyl/${encodeURIComponent(vinyl.title)}`}>
                   <h2

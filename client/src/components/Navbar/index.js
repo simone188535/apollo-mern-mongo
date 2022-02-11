@@ -5,7 +5,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import Auth from "../../utils/auth";
 
-function Navbar() {
+function Navbar({ setEasterEgg }) {
   const history = useHistory();
 
   const logout = (event) => {
@@ -20,7 +20,15 @@ function Navbar() {
     e.preventDefault();
 
     if (searchTerm && type) {
-      history.push(`/results?q=${searchTerm}&${type.toLowerCase()}`)
+      const splitTerm = searchTerm.split(':');
+      if (splitTerm.length === 1) {
+        setEasterEgg(false)
+        history.push(`/results?q=${searchTerm}&${type.toLowerCase()}`)
+      }
+      else if (splitTerm[1] === 'spin') {
+        setEasterEgg(true)
+        history.push(`/results?q=${splitTerm[0]}&${type.toLowerCase()}`)
+      }
     }
   };
 
