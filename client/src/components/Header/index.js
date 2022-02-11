@@ -9,7 +9,7 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg nav">
       <div className="container">
         <Link to="/" draggable='false' className="navbar-brand text-light">
-          <img className='spin' draggable='false' src={logo} alt='Logo'></img>
+          <img className='spin nav-logo' draggable='false' src={logo} alt='Logo'></img>
         </Link>
         <Navbar />
       </div>
