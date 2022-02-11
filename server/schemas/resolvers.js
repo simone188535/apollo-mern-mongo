@@ -40,7 +40,7 @@ const resolvers = {
 
       const doesEmailExist = await User.findOne({ email });
       const doesUsernameExist = await User.findOne({ username });
-      
+
       if (doesEmailExist) {
         throw new AuthenticationError("This email already has an account!");
       }
@@ -79,7 +79,7 @@ const resolvers = {
       const user = await User.findOneAndUpdate(
         { _id: userId },
         {
-          $addToSet: {
+          $push: {
             vinyl: { title, id: vinylId, format, label, type, genre, style, cover_image },
           },
         },
@@ -87,7 +87,7 @@ const resolvers = {
       )
 
 
-      return { user };
+      return user;
     },
 
     deleteUser: async (_, { id }) => {
@@ -97,7 +97,7 @@ const resolvers = {
     },
 
     updateUser: async (_, { id, email, username, password }) => {
-      
+
       const user = await User.findById(id);
 
       user.username = username;
@@ -105,7 +105,7 @@ const resolvers = {
       user.email = email;
 
       await user.save();
-      
+
       const token = signToken(user);
 
       return { token, user };
@@ -117,7 +117,7 @@ const resolvers = {
         { $pull: { vinyl: { _id: vinylId } } },
         { new: true }
       );
-      return { user };
+      return user;
     }
   },
 };

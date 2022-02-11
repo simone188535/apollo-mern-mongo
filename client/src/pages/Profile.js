@@ -17,13 +17,16 @@ const Profile = () => {
     variables: { id },
   });
 
-  const submit = (userId, vinylId) => {
-    deleteVinyl({
+  const user = data?.me || data?.user;
+
+  const submit = async (userId, vinylId) => {
+    await deleteVinyl({
       variables: { userId, vinylId }
     });
   }
 
-  const user = data?.me || data?.user || {};
+
+  console.log('!!!!', user)
 
   if (error) console.log(error);
 
@@ -35,7 +38,7 @@ const Profile = () => {
     return <h4>Loading...</h4>;
   }
 
-  if (!user?.username) {
+  if (!user) {
     return (
       <section className="container profile-page mt-5 min-vh-100">
         <div className="row">

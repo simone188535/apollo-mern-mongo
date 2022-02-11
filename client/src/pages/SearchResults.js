@@ -19,13 +19,13 @@ const SearchResults = () => {
   const { loading, data } = useQuery(QUERY_VINYLS, canSearch ? { variables } : {});
   const vinyls = data?.vinyls || []
 
+  // const {loading:myVinylData, data:myVinylsData} = 
 
   const { loading: userLoading, data: userData } = useQuery(QUERY_ME);
   const me = userData?.me;
 
   const userVinylIds = me?.vinyl.map((vinyl) => vinyl.id);
 
-  console.log(userVinylIds)
 
   const [addVinyl, { data: vinylData, loading: vinylLoading, error }] = useMutation(ADD_VINYL);
 
@@ -46,6 +46,11 @@ const SearchResults = () => {
           "userId": me._id,
           "vinylId": parseInt(id),
           "title": title,
+          "format": [],
+          "label": [],
+          "type": '',
+          "genre": [],
+          "style": [],
           "cover_image": cover_image
         }
       })

@@ -54,9 +54,15 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      vinylCount
       vinyl {
         id
         title
+        format
+        label
+        type
+        genre
+        style
         cover_image
       }
     }
