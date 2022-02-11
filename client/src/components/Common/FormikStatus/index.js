@@ -1,8 +1,8 @@
 import { useFormikContext } from "formik";
 
 const FormikStatus = ({ err, successMessage }) => {
-    const { submitCount, isSubmitting } = useFormikContext();
-    if (submitCount > 0 && !isSubmitting) {
+    const { submitCount, isSubmitting, isValid } = useFormikContext();
+    if (submitCount > 0 && !isSubmitting && isValid) {
       if (err) {
         return (
           <div className="text-danger text-center">

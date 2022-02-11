@@ -57,6 +57,7 @@ const Edit = () => {
           onSubmit={handleFormSubmit}
           enableReinitialize
         >
+          {({ isValid }) => (
           <Form className="col d-flex flex-column">
             <label htmlFor="username" className="mb-2">New Username</label>
             <Field name="username" type="text" className="mb-2 form-control" />
@@ -70,9 +71,10 @@ const Edit = () => {
             <Field name="password" type="password" className="mb-2 form-control" placeholder="Please enter a new password"/>
             <ErrorMessage name="password" component="div" className="text-danger mb-3" />
 
-            <button type="submit" className="btn text-light submit-btn mt-3">Submit</button>
+            <button type="submit" className="btn text-light submit-btn mt-3" disabled={!isValid}>Submit</button>
             <FormikStatus err={successfulSubmission} successMessage="Edit Successful!" />
           </Form>
+          )}
         </Formik>
       </div>
     </section>
