@@ -11,7 +11,7 @@
 
 ## **Description**
 
-This is a website that allows the user to search and select vinyl records of their choosing by Artist, Song or Genre - also allowing them to add individual vinyls to a collection of favorites and display them on their personal profile page.
+This is a website that allows the user to search and select vinyl records of their choosing by Artist, Song or Genre - also allowing them to add individual vinyls to a collection of favorites and display them on their personal profile page. Technology: React, Apollo GraphQL, Node, Express, Mongoose and MongoDB
 
 ***
 
